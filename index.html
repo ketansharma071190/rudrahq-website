@@ -3,891 +3,613 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUDRA — The Combat Robot Universe</title>
-  <meta name="description" content="India's first mythology-powered robot combat universe. Arjuna. Bhim. The warriors of Kurukshetra fight again." />
-  <meta property="og:title" content="RUDRA — The Combat Robot Universe" />
-  <meta property="og:description" content="Real Steel × Tekken 3 × Mahabharata. The warriors of Kurukshetra fight again." />
-  <meta property="og:image" content="https://rudrahq.com/assets/og-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>RUDRA — The Universe Remembers</title>
+  <meta name="description" content="Rudra is not a brand. It is a declaration. Humanoid combat robots forged from the soul of Sanatana Dharm." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23060608' rx='8'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='40' font-weight='700' fill='%23b8860b'>ॐ</text></svg>" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
-    /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --black:    #060608;
-      --dark:     #0d0d10;
-      --card:     #111116;
-      --border:   #1e1e26;
-      --gold:     #b8860b;
-      --gold-lt:  #d4a820;
-      --gold-dim: #7a5c00;
-      --blue:     #1a3a7a;
-      --blue-lt:  #2a55b0;
-      --crimson:  #8b0000;
-      --crimson-lt:#c41a1a;
-      --green:    #2d5a1b;
-      --green-lt: #4a8a2c;
-      --white:    #f0ede6;
-      --muted:    #7a7870;
-      --font-display: 'Cinzel', serif;
-      --font-body:    'Rajdhani', sans-serif;
-      --font-fine:    'Inter', sans-serif;
+      --black:   #060608;
+      --deep:    #0a0a0e;
+      --gold:    #b8860b;
+      --gold-lt: #d4a017;
+      --gold-dim: #7a5c08;
+      --blue:    #1a3a7a;
+      --blue-lt: #2a5abf;
+      --green:   #2d5a1b;
+      --green-lt:#3d7a25;
+      --crimson: #8b0000;
+      --crimson-lt:#b22222;
+      --white:   #f0ece0;
+      --muted:   #888880;
+      --glass:   rgba(255,255,255,0.04);
+      --glass-border: rgba(184,134,11,0.2);
     }
+
     html { scroll-behavior: smooth; }
+
     body {
       background: var(--black);
       color: var(--white);
-      font-family: var(--font-body);
+      font-family: 'Rajdhani', sans-serif;
       font-size: 18px;
       line-height: 1.6;
       overflow-x: hidden;
     }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
 
-    /* ── UTILITY ── */
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
-    .tag {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--gold-dim);
-      padding: 5px 14px;
-      margin-bottom: 24px;
+    /* PARTICLES */
+    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .particle {
+      position: absolute; border-radius: 50%; background: var(--gold);
+      animation: drift linear infinite; opacity: 0;
     }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      line-height: 1.15;
-      color: var(--white);
-    }
-    .gold-line {
-      width: 60px; height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin: 20px 0 32px;
+    @keyframes drift {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 0.5; }
+      90%  { opacity: 0.2; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.35;
-    }
-
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 0;
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 20px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(180deg, rgba(6,6,8,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,134,11,0.1);
       transition: background 0.3s;
     }
-    nav.scrolled { background: rgba(6,6,8,0.95); border-bottom: 1px solid var(--border); }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    nav.scrolled { background: rgba(6,6,8,0.98); }
     .nav-logo {
-      font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 0.15em;
-      color: var(--white);
+      font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 900;
+      letter-spacing: 0.3em; color: var(--white); text-decoration: none;
     }
     .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
     .nav-links a {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.2s;
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.8rem;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover { color: var(--gold); }
     .nav-cta {
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--black) !important;
-      background: var(--gold);
-      padding: 9px 22px;
-      transition: background 0.2s !important;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--black);
+      background: var(--gold); padding: 10px 24px; text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     }
-    .nav-cta:hover { background: var(--gold-lt) !important; color: var(--black) !important; }
+    .nav-cta:hover { background: var(--gold-lt); transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* HERO */
     #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex; align-items: center;
-      overflow: hidden;
+      position: relative; min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 70% 40%, rgba(26,58,122,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(139,0,0,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(184,134,11,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,58,122,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(139,0,0,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(184,134,11,0.08) 0%, transparent 60%),
         var(--black);
     }
-    .hero-art {
-      position: absolute;
-      right: -2%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: min(54%, 620px);
-      z-index: 1;
-      opacity: 0.92;
-      filter: drop-shadow(0 0 60px rgba(184,134,11,0.25)) drop-shadow(0 0 120px rgba(26,58,122,0.20));
+    .hero-content { position: relative; z-index: 2; padding: 140px 60px 80px; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+    .hero-eyebrow span {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
     }
-    .hero-art img { width: 100%; }
-    /* Kill the SVG's own background so it blends with our gradient */
-    .hero-art svg > rect:first-of-type { display: none; }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 600px;
-      padding-top: 80px;
+    .hero-title {
+      font-family: 'Cinzel', serif; font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 900; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 32px;
     }
-    .hero-eyebrow {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      display: flex; align-items: center; gap: 12px;
+    .hero-title .accent { color: var(--gold); }
+    .hero-subtitle {
+      font-size: 1.05rem; color: rgba(240,236,224,0.7); max-width: 480px;
+      line-height: 1.85; margin-bottom: 48px; font-weight: 400;
     }
-    .hero-eyebrow::before {
-      content: ''; display: block;
-      width: 40px; height: 1px;
-      background: var(--gold);
+    .hero-subtitle .devanagari {
+      font-size: 1.2rem; color: var(--gold-lt); display: block;
+      margin-bottom: 14px; letter-spacing: 0.05em;
     }
-    .hero-h1 {
-      font-family: var(--font-display);
-      font-size: clamp(42px, 6.5vw, 88px);
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-    .hero-h1 .gold { color: var(--gold); }
-    .hero-h1 .dim  { color: var(--muted); font-weight: 400; }
-    .hero-sub {
-      font-family: var(--font-display);
-      font-size: clamp(14px, 1.8vw, 20px);
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      margin-bottom: 32px;
-      line-height: 1.4;
-    }
-    .hero-tagline {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 48px;
-    }
-    .hero-tagline .sep { color: var(--gold); font-size: 16px; }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .hero-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
     .btn-primary {
-      font-family: var(--font-body);
-      font-size: 13px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      background: var(--gold);
-      color: var(--black);
-      padding: 14px 32px;
-      border: none; cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      display: inline-block;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--black);
+      background: var(--gold); padding: 16px 36px; text-decoration: none;
+      display: inline-block; transition: all 0.2s;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
     }
-    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(184,134,11,0.4); }
     .btn-ghost {
-      font-family: var(--font-body);
-      font-size: 13px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted);
-      padding: 14px 0;
-      background: none; border: none; cursor: pointer;
-      transition: color 0.2s;
-      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.8rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--white);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+      transition: gap 0.2s, color 0.2s;
     }
-    .btn-ghost:hover { color: var(--white); }
-    .hero-scroll-hint {
-      position: absolute; bottom: 40px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--muted);
+    .btn-ghost:hover { gap: 16px; color: var(--gold); }
+
+    .hero-visual {
+      position: relative; z-index: 2; height: 100vh;
+      display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
     }
-    .scroll-line {
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
+    .hero-visual::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background:
+        linear-gradient(90deg, var(--black) 0%, transparent 30%, transparent 70%, var(--black) 100%),
+        linear-gradient(0deg, var(--black) 0%, transparent 30%);
     }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
+    .hero-img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      filter: saturate(1.1) contrast(1.05);
+    }
+    .hero-label { position: absolute; bottom: 40px; right: 40px; z-index: 3; text-align: right; }
+    .hero-label-name {
+      font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.3em; color: var(--white);
+    }
+    .hero-label-sub { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      position: relative; z-index: 2;
+      border-top: 1px solid rgba(184,134,11,0.2); border-bottom: 1px solid rgba(184,134,11,0.2);
+      background: rgba(184,134,11,0.04); overflow: hidden; padding: 14px 0;
+    }
+    .marquee-track { display: flex; animation: marquee 30s linear infinite; width: max-content; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .marquee-item {
+      font-family: 'Cinzel', serif; font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold);
+      white-space: nowrap; padding: 0 40px;
+    }
+    .marquee-dot { color: var(--crimson); padding: 0 10px; }
+
+    /* SECTIONS */
+    section { position: relative; z-index: 1; }
+    .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+    .section-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .section-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+    .section-eyebrow span {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+    }
+    .section-title {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; line-height: 1.1; margin-bottom: 24px;
     }
 
-    /* ── STRIP ── */
-    .strip {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--dark);
-      padding: 18px 0; overflow: hidden;
-    }
-    .strip-inner {
-      display: flex; gap: 60px; align-items: center;
-      white-space: nowrap;
-      animation: marquee 24s linear infinite;
-    }
-    .strip-item {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted); flex-shrink: 0;
-    }
-    .strip-item .dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ── ABOUT / MISSION ── */
+    /* ABOUT */
     #about {
-      padding: 120px 0 100px;
-      position: relative;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .about-body {
-      font-family: var(--font-body);
-      font-size: 18px; font-weight: 300;
-      color: #bfbcb4;
-      line-height: 1.75;
-      margin-bottom: 28px;
-    }
-    .about-body strong { color: var(--white); font-weight: 600; }
-    .stat-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2px; margin-top: 48px;
-    }
-    .stat-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 22px 24px;
-    }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 32px; font-weight: 900;
-      color: var(--gold); line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .about-quote {
-      position: relative;
-      padding: 40px 40px 40px 60px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--gold);
-    }
-    .about-quote::before {
-      content: '\201C';
-      position: absolute; left: 20px; top: 20px;
-      font-family: var(--font-display);
-      font-size: 80px; line-height: 1;
-      color: var(--gold-dim);
-      leading-trim: both; text-edge: cap;
-    }
-    .about-quote p {
-      font-family: var(--font-display);
-      font-size: clamp(16px, 1.8vw, 20px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--white);
-      line-height: 1.55;
-    }
-    .about-quote cite {
-      display: block;
-      margin-top: 20px;
-      font-family: var(--font-body);
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); font-style: normal;
-    }
-
-    /* ── WARRIORS ── */
-    #warriors { padding: 100px 0; }
-    .warriors-header { text-align: center; margin-bottom: 72px; }
-    .warriors-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3px;
-    }
-    .warrior-card {
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: border-color 0.3s;
-    }
-    .warrior-card:hover { border-color: var(--gold-dim); }
-    .warrior-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      transition: opacity 0.3s;
-    }
-    .warrior-card.arjuna::before { background: linear-gradient(90deg, var(--blue), var(--gold)); }
-    .warrior-card.bhim::before   { background: linear-gradient(90deg, var(--green), var(--gold)); }
-    .warrior-glow {
-      position: absolute; top: 0; right: 0;
-      width: 60%; height: 60%;
-      pointer-events: none; z-index: 0;
-      opacity: 0.12;
-    }
-    .warrior-card.arjuna .warrior-glow {
-      background: radial-gradient(circle at top right, var(--blue-lt), transparent);
-    }
-    .warrior-card.bhim .warrior-glow {
-      background: radial-gradient(circle at top right, var(--green-lt), transparent);
-    }
-    .warrior-inner { position: relative; z-index: 1; padding: 48px; }
-    .warrior-num {
-      font-family: var(--font-display);
-      font-size: 80px; font-weight: 900; line-height: 1;
-      color: var(--border);
-      position: absolute; right: 40px; top: 32px;
-      user-select: none;
-    }
-    .warrior-faction {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .warrior-card.arjuna .warrior-faction { color: var(--blue-lt); }
-    .warrior-card.bhim   .warrior-faction { color: var(--green-lt); }
-    .warrior-name {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4vw, 52px);
-      font-weight: 900; letter-spacing: 0.06em;
-      line-height: 1; margin-bottom: 4px;
-    }
-    .warrior-devanagari {
-      font-size: 22px; font-weight: 400;
-      color: var(--gold-dim); margin-bottom: 20px;
-      letter-spacing: 0.04em;
-    }
-    .warrior-role {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 5px 14px; margin-bottom: 28px;
-      border: 1px solid;
-    }
-    .warrior-card.arjuna .warrior-role { color: var(--blue-lt); border-color: var(--blue); }
-    .warrior-card.bhim   .warrior-role { color: var(--green-lt); border-color: var(--green); }
-    .warrior-lore {
-      font-size: 16px; font-weight: 300;
-      color: #b0aca4; line-height: 1.65;
-      margin-bottom: 32px;
-    }
-    .warrior-stats { display: flex; flex-direction: column; gap: 12px; }
-    .stat-row { display: flex; flex-direction: column; gap: 4px; }
-    .stat-row-label {
-      display: flex; justify-content: space-between;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase;
-    }
-    .stat-row-label span:first-child { color: var(--muted); }
-    .stat-row-label span:last-child { color: var(--gold); }
-    .stat-bar-bg {
-      height: 2px; background: var(--border); border-radius: 1px;
-    }
-    .stat-bar-fill {
-      height: 100%; border-radius: 1px;
-      transition: width 1s ease-out;
-    }
-    .warrior-card.arjuna .stat-bar-fill { background: var(--blue-lt); }
-    .warrior-card.bhim   .stat-bar-fill { background: var(--green-lt); }
-    .warrior-signature {
-      margin-top: 36px; padding-top: 28px;
-      border-top: 1px solid var(--border);
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .sig-label {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .sig-name {
-      font-family: var(--font-display);
-      font-size: 18px; font-weight: 700;
-      color: var(--gold); letter-spacing: 0.06em;
-    }
-    .sig-desc {
-      font-size: 13px; font-weight: 300; color: #8a8680;
-    }
-
-    /* ── UNIVERSE ── */
-    #universe { padding: 100px 0; background: var(--dark); }
-    .universe-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start;
-    }
-    .universe-phases { display: flex; flex-direction: column; gap: 3px; }
-    .phase-item {
-      display: flex; gap: 24px; align-items: flex-start;
-      padding: 28px 28px;
-      background: var(--card); border: 1px solid var(--border);
-      transition: border-color 0.2s;
-    }
-    .phase-item:hover { border-color: var(--gold-dim); }
-    .phase-num {
-      font-family: var(--font-display);
-      font-size: 28px; font-weight: 900;
-      color: var(--gold-dim); line-height: 1; flex-shrink: 0;
-      width: 36px;
-    }
-    .phase-content {}
-    .phase-title {
-      font-family: var(--font-display);
-      font-size: 16px; font-weight: 700;
-      letter-spacing: 0.04em; color: var(--white);
-      margin-bottom: 6px;
-    }
-    .phase-desc {
-      font-size: 14px; font-weight: 300;
-      color: var(--muted); line-height: 1.5;
-    }
-    .phase-item.active { border-color: var(--gold-dim); }
-    .phase-item.active .phase-num { color: var(--gold); }
-    .phase-item.active .phase-title { color: var(--gold); }
-    .series-grid { display: flex; flex-direction: column; gap: 24px; }
-    .series-title {
-      font-family: var(--font-body);
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
-    }
-    .series-items {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .series-chip {
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.08em;
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .series-chip:hover { border-color: var(--gold-dim); color: var(--white); }
-    .series-chip.highlight { border-color: var(--gold-dim); color: var(--gold); }
-
-    /* ── JOIN / EMAIL CAPTURE ── */
-    #join {
       padding: 120px 0;
-      position: relative; overflow: hidden;
-      background: var(--black);
+      background: linear-gradient(180deg, var(--black) 0%, var(--deep) 50%, var(--black) 100%);
     }
-    #join::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(184,134,11,0.07) 0%, transparent 65%);
-      pointer-events: none;
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-text p {
+      color: rgba(240,236,224,0.75); font-size: 1.05rem; line-height: 1.9; margin-bottom: 24px;
     }
-    .join-inner { text-align: center; position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-    .join-title {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 5vw, 60px);
-      font-weight: 900; letter-spacing: 0.04em;
-      line-height: 1.1; margin-bottom: 16px;
+    .about-text strong { color: var(--gold-lt); font-weight: 600; }
+    .about-text .sanskrit {
+      font-size: 1.4rem; color: var(--gold); display: block;
+      text-align: center; margin: 16px 0; letter-spacing: 0.05em;
     }
-    .join-sub {
-      font-size: 17px; font-weight: 300;
-      color: var(--muted); line-height: 1.6;
-      margin-bottom: 48px;
+    .about-right { display: grid; grid-template-rows: auto auto auto; gap: 20px; }
+    .about-stat-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      padding: 32px; backdrop-filter: blur(12px); position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
     }
-    .email-form {
-      display: flex; gap: 0;
-      max-width: 520px; margin: 0 auto 20px;
+    .about-stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
+    .about-stat-card:hover { border-color: rgba(184,134,11,0.5); transform: translateY(-2px); }
+    .stat-number { font-family: 'Cinzel', serif; font-size: 2.8rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .about-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* WARRIORS */
+    #warriors { padding: 120px 0; background: var(--black); }
+    .warriors-header { text-align: center; margin-bottom: 72px; }
+    .warriors-header .section-eyebrow { justify-content: center; }
+    .warriors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+    .warrior-card {
+      position: relative; background: var(--glass); border: 1px solid var(--glass-border);
+      overflow: hidden; cursor: pointer; transform-style: preserve-3d;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .warrior-card::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 60%); z-index: 1;
+    }
+    .warrior-card.arjuna { border-color: rgba(26,58,122,0.5); }
+    .warrior-card.bhim   { border-color: rgba(45,90,27,0.5); }
+    .warrior-card.arjuna:hover { box-shadow: 0 20px 60px rgba(26,58,122,0.4); border-color: rgba(42,90,191,0.6); }
+    .warrior-card.bhim:hover   { box-shadow: 0 20px 60px rgba(45,90,27,0.4); border-color: rgba(61,122,37,0.6); }
+
+    .warrior-img-wrap { position: relative; height: 460px; overflow: hidden; }
+    .warrior-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      transition: transform 0.6s ease;
+    }
+    .warrior-card:hover .warrior-img-wrap img { transform: scale(1.04); }
+    .warrior-img-overlay { position: absolute; inset: 0; }
+    .warrior-card.arjuna .warrior-img-overlay {
+      background: linear-gradient(0deg, rgba(6,6,8,1) 0%, rgba(6,6,8,0.5) 30%, rgba(26,58,122,0.2) 70%, transparent 100%);
+    }
+    .warrior-card.bhim .warrior-img-overlay {
+      background: linear-gradient(0deg, rgba(6,6,8,1) 0%, rgba(6,6,8,0.5) 30%, rgba(45,90,27,0.2) 70%, transparent 100%);
+    }
+    .warrior-badge {
+      position: absolute; top: 24px; right: 24px; padding: 6px 14px;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; border: 1px solid; backdrop-filter: blur(8px);
+    }
+    .warrior-card.arjuna .warrior-badge { color: var(--blue-lt); border-color: var(--blue-lt); background: rgba(26,58,122,0.3); }
+    .warrior-card.bhim   .warrior-badge { color: var(--green-lt); border-color: var(--green-lt); background: rgba(45,90,27,0.3); }
+
+    .warrior-body { position: relative; z-index: 2; padding: 32px; }
+    .warrior-name { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 900; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .warrior-devanagari { font-size: 1rem; color: var(--gold-dim); margin-bottom: 16px; letter-spacing: 0.1em; }
+    .warrior-desc { font-size: 0.92rem; color: rgba(240,236,224,0.65); line-height: 1.7; margin-bottom: 28px; }
+    .warrior-stats { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .stat-row { display: flex; align-items: center; gap: 12px; }
+    .stat-name { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); width: 80px; flex-shrink: 0; }
+    .stat-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .stat-fill { height: 100%; transition: width 1.2s ease; }
+    .warrior-card.arjuna .stat-fill { background: linear-gradient(90deg, var(--blue), var(--blue-lt)); }
+    .warrior-card.bhim   .stat-fill { background: linear-gradient(90deg, var(--green), var(--green-lt)); }
+    .stat-val { font-family: 'Cinzel', serif; font-size: 0.75rem; font-weight: 700; width: 32px; text-align: right; }
+    .warrior-card.arjuna .stat-val { color: var(--blue-lt); }
+    .warrior-card.bhim   .stat-val { color: var(--green-lt); }
+    .warrior-specs {
+      display: flex; gap: 24px; padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .spec-val { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .spec-key { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+    /* UNIVERSE */
+    #universe { padding: 120px 0; background: linear-gradient(180deg, var(--black) 0%, rgba(10,10,14,1) 100%); }
+    .universe-header { margin-bottom: 72px; }
+    .universe-subtitle { max-width: 600px; color: rgba(240,236,224,0.6); font-size: 1rem; line-height: 1.8; }
+    .universe-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px; }
+    .universe-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      padding: 36px 28px; position: relative; overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .universe-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .universe-card.phase-1::before { background: linear-gradient(90deg, var(--gold), transparent); }
+    .universe-card.phase-2::before { background: linear-gradient(90deg, var(--blue-lt), transparent); }
+    .universe-card.phase-3::before { background: linear-gradient(90deg, var(--green-lt), transparent); }
+    .universe-card.phase-4::before { background: linear-gradient(90deg, var(--crimson-lt), transparent); }
+    .universe-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+    .universe-card.phase-1:hover { border-color: rgba(184,134,11,0.4); }
+    .universe-card.phase-2:hover { border-color: rgba(42,90,191,0.4); }
+    .universe-card.phase-3:hover { border-color: rgba(61,122,37,0.4); }
+    .universe-card.phase-4:hover { border-color: rgba(178,34,34,0.4); }
+    .phase-num { font-family: 'Cinzel', serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .phase-1 .phase-num { color: var(--gold); }
+    .phase-2 .phase-num { color: var(--blue-lt); }
+    .phase-3 .phase-num { color: var(--green-lt); }
+    .phase-4 .phase-num { color: var(--crimson-lt); }
+    .phase-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+    .phase-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .phase-warriors { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .phase-1 .phase-warriors { color: var(--gold-dim); }
+    .phase-2 .phase-warriors { color: rgba(42,90,191,0.8); }
+    .phase-3 .phase-warriors { color: rgba(61,122,37,0.8); }
+    .phase-4 .phase-warriors { color: rgba(178,34,34,0.8); }
+    .phase-desc { font-size: 0.85rem; color: rgba(240,236,224,0.5); line-height: 1.7; }
+    .phase-status { margin-top: 20px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 10px; display: inline-block; border: 1px solid; }
+    .status-live   { color: var(--gold);    border-color: var(--gold-dim);               background: rgba(184,134,11,0.1); }
+    .status-coming { color: var(--blue-lt); border-color: var(--blue);                   background: rgba(26,58,122,0.1); }
+    .status-vision { color: var(--muted);   border-color: rgba(136,136,128,0.3);         background: transparent; }
+
+    .ip-strip {
+      border: 1px solid var(--glass-border); background: var(--glass);
+      backdrop-filter: blur(8px); padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    }
+    .ip-strip-text h3 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .ip-strip-text p { font-size: 0.9rem; color: rgba(240,236,224,0.6); max-width: 500px; }
+    .ip-tags { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+    .ip-tag {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+      border: 1px solid var(--gold-dim); padding: 6px 14px; background: rgba(184,134,11,0.06);
+    }
+
+    /* INVESTORS */
+    #investors {
+      padding: 120px 0;
+      background: linear-gradient(180deg, rgba(10,10,14,1) 0%, var(--black) 100%);
+      border-top: 1px solid rgba(184,134,11,0.1);
+    }
+    .investors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .investors-text p { color: rgba(240,236,224,0.7); font-size: 1rem; line-height: 1.9; margin-bottom: 20px; }
+    .investors-text .highlight { color: var(--gold-lt); font-weight: 600; }
+    .investor-cta {
+      display: inline-block; margin-top: 16px;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+      text-decoration: none; border: 1px solid var(--gold-dim); padding: 14px 32px;
+      transition: all 0.2s;
+    }
+    .investor-cta:hover { background: var(--gold); color: var(--black); }
+    .moat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .moat-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      padding: 28px 24px; transition: border-color 0.3s, transform 0.3s;
+    }
+    .moat-card:hover { border-color: rgba(184,134,11,0.4); transform: translateY(-3px); }
+    .moat-icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+    .moat-title { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .moat-desc { font-size: 0.82rem; color: rgba(240,236,224,0.5); line-height: 1.6; }
+
+    /* JOIN */
+    #join { padding: 120px 0; background: var(--black); text-align: center; }
+    .join-inner { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+    .join-devanagari { font-size: 2rem; color: var(--gold); display: block; margin-bottom: 16px; letter-spacing: 0.1em; }
+    #join .section-title { margin-bottom: 16px; }
+    .join-sub { font-size: 1rem; color: rgba(240,236,224,0.6); margin-bottom: 48px; line-height: 1.8; }
+    .email-form { display: flex; max-width: 480px; margin: 0 auto 20px; }
     .email-input {
-      flex: 1;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-right: none;
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: 15px;
-      padding: 16px 20px;
-      outline: none;
-      transition: border-color 0.2s;
+      flex: 1; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(184,134,11,0.3); border-right: none;
+      padding: 16px 20px; color: var(--white);
+      font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+      outline: none; transition: border-color 0.2s;
     }
+    .email-input:focus { border-color: var(--gold); }
     .email-input::placeholder { color: var(--muted); }
-    .email-input:focus { border-color: var(--gold-dim); }
     .email-submit {
-      background: var(--gold);
-      color: var(--black);
-      border: none;
-      font-family: var(--font-body);
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      padding: 16px 28px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.2s;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--black);
+      background: var(--gold); border: none; padding: 16px 28px;
+      cursor: pointer; transition: background 0.2s; white-space: nowrap;
     }
     .email-submit:hover { background: var(--gold-lt); }
-    .email-note {
-      font-size: 12px; color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-    .form-success {
-      display: none;
-      font-family: var(--font-display);
-      font-size: 20px; color: var(--gold);
-      letter-spacing: 0.06em;
-      padding: 20px;
-    }
+    .email-note { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; }
+    .form-success { display: none; color: var(--gold-lt); font-size: 1rem; font-weight: 600; letter-spacing: 0.1em; padding: 20px; }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
-      border-top: 1px solid var(--border);
-      background: var(--dark);
-      padding: 48px 0 36px;
+      border-top: 1px solid rgba(184,134,11,0.15); padding: 60px;
+      display: grid; grid-template-columns: 1fr auto; gap: 40px;
+      align-items: center; background: var(--deep);
     }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      flex-wrap: wrap; gap: 32px;
-    }
-    .footer-brand {}
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 20px; font-weight: 900;
-      letter-spacing: 0.15em; color: var(--white);
-      margin-bottom: 6px;
-    }
-    .footer-logo span { color: var(--gold); }
-    .footer-tagline {
-      font-size: 12px; color: var(--muted);
-      letter-spacing: 0.08em;
-    }
-    .footer-links {
-      display: flex; gap: 28px; align-items: center;
-    }
-    .footer-link {
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted); transition: color 0.2s;
-    }
-    .footer-link:hover { color: var(--white); }
-    .footer-bottom {
-      margin-top: 36px; padding-top: 24px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-    }
-    .footer-copy {
-      font-size: 11px; color: var(--muted);
-      letter-spacing: 0.06em;
-    }
-    .footer-social {
-      display: flex; gap: 20px;
-    }
-    .social-link {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--muted); transition: color 0.2s;
-    }
-    .social-link:hover { color: var(--gold); }
+    .footer-brand { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: 0.3em; color: var(--white); margin-bottom: 8px; }
+    .footer-brand span { color: var(--gold); }
+    .footer-tagline { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
+    .footer-links { display: flex; gap: 32px; list-style: none; }
+    .footer-links a { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { padding: 20px 60px; background: var(--deep); border-top: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.72rem; color: rgba(136,136,128,0.5); letter-spacing: 0.1em; }
+    .footer-devanagari { font-size: 1.1rem; color: rgba(184,134,11,0.3); letter-spacing: 0.1em; }
 
-    /* ── REVEAL ANIMATIONS ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* DIVIDER */
+    .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(184,134,11,0.3), transparent); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      .hero-art { width: 50%; right: -5%; opacity: 0.35; }
-      .hero-content { max-width: 100%; }
-      .about-grid, .warriors-grid, .universe-inner { grid-template-columns: 1fr; gap: 48px; }
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 16px 24px; }
       .nav-links { display: none; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-      .stat-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 520px) {
-      .email-form { flex-direction: column; }
-      .email-input { border-right: 1px solid var(--border); border-bottom: none; }
-      .hero-art { display: none; }
-      .warrior-num { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 120px 24px 60px; }
+      .hero-visual { height: 55vh; }
+      .about-grid, .investors-grid { grid-template-columns: 1fr; gap: 48px; }
+      .warriors-grid { grid-template-columns: 1fr; }
+      .universe-grid { grid-template-columns: 1fr 1fr; }
+      .ip-strip { flex-direction: column; text-align: center; }
+      footer { grid-template-columns: 1fr; text-align: center; }
+      .footer-links { justify-content: center; }
+      .section-inner { padding: 0 24px; }
+      .moat-cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<div id="particles"></div>
+
+<!-- NAV -->
 <nav id="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">RUD<span>RA</span></a>
-      <div class="nav-links">
-        <a href="#about">Mission</a>
-        <a href="#warriors">Warriors</a>
-        <a href="#universe">Universe</a>
-        <a href="#join" class="nav-cta">Join the League</a>
-      </div>
-    </div>
-  </div>
+  <a href="#" class="nav-logo">RUD<span>RA</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Dharma</a></li>
+    <li><a href="#warriors">Warriors</a></li>
+    <li><a href="#universe">Universe</a></li>
+    <li><a href="#investors">Investors</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Join the League</a>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-art">
-    <img src="assets/arjuna.svg" alt="Arjuna — Warrior of Dharma" />
-  </div>
-
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-eyebrow">Arjuna League — Season One</div>
-
-      <h1 class="hero-h1">
-        THE GODS<br/>
-        <span class="gold">HAVE</span><br/>
-        RETURNED.
-      </h1>
-
-      <p class="hero-sub">
-        India's first mythology-powered<br/>robot combat universe.
-      </p>
-
-      <div class="hero-tagline">
-        <span>Real Steel</span>
-        <span class="sep">×</span>
-        <span>Tekken 3</span>
-        <span class="sep">×</span>
-        <span>Mahabharata</span>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#join" class="btn-primary">Join the League</a>
-        <a href="#warriors" class="btn-ghost">
-          Meet the Warriors
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-            <path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span>Arjuna League — Season One</span></div>
+    <h1 class="hero-title">
+      THE ETERNAL<br>
+      <span class="accent">HAS</span><br>
+      TAKEN FORM.
+    </h1>
+    <p class="hero-subtitle">
+      <span class="devanagari">रुद्रो रुद्राणां प्रथमो देवतानाम्</span>
+      Rudra is not a name. It is the nature of all that is.<br>
+      Now, for the first time, that consciousness stands on two legs and fights.
+    </p>
+    <div class="hero-actions">
+      <a href="#warriors" class="btn-primary">Meet the Warriors</a>
+      <a href="#universe" class="btn-ghost">The Universe →</a>
     </div>
   </div>
-
-  <div class="hero-scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+  <div class="hero-visual">
+    <img src="assets/arjuna-cinematic.png" alt="Arjuna — Warrior of Dharma" class="hero-img" loading="eager" />
+    <div class="hero-label">
+      <div class="hero-label-name">ARJUNA</div>
+      <div class="hero-label-sub">अर्जुन · Prototype v1.0</div>
+    </div>
   </div>
 </section>
 
-<!-- ── MARQUEE STRIP ── -->
-<div class="strip">
-  <div class="strip-inner">
-    <div class="strip-item"><span class="dot"></span><span>Combat Robotics</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Mythology IP</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Arjuna League</span></div>
-    <div class="strip-item"><span class="dot"></span><span>109 Kurukshetra Warriors</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Season One — 2026</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Mahabharata</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Ramayana</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Devata Series</span></div>
-    <!-- duplicate for seamless loop -->
-    <div class="strip-item"><span class="dot"></span><span>Combat Robotics</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Mythology IP</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Arjuna League</span></div>
-    <div class="strip-item"><span class="dot"></span><span>109 Kurukshetra Warriors</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Season One — 2026</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Mahabharata</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Ramayana</span></div>
-    <div class="strip-item"><span class="dot"></span><span>Devata Series</span></div>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Sanatana Dharm</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Humanoid Combat Robotics</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Arjuna — Warrior of Dharma</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Bhim — Force of the Earth</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Made in Bharat</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">The Rudra Universe</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Sanatana Dharm</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Humanoid Combat Robotics</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Arjuna — Warrior of Dharma</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Bhim — Force of the Earth</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Made in Bharat</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">The Rudra Universe</span><span class="marquee-dot">✦</span>
   </div>
 </div>
 
-<!-- ── ABOUT / MISSION ── -->
+<!-- ABOUT -->
 <section id="about">
-  <div class="container">
+  <div class="section-inner">
     <div class="about-grid">
-      <div class="reveal">
-        <div class="tag">The Mission</div>
-        <h2 class="section-title">Not a toy.<br/>A universe.</h2>
-        <div class="gold-line"></div>
-        <p class="about-body">
-          Most robot companies <strong>start with technology</strong> and look for a market.
-          We inverted that. We started with the <strong>deepest mythology on earth</strong>
-          and built the technology to bring those stories to life in physical form.
+      <div class="about-text reveal">
+        <div class="section-eyebrow"><span>The Name</span></div>
+        <h2 class="section-title">Rudra is not a god.<br>Rudra is everything.</h2>
+        <p>
+          In Advait Vedanta — the most complete articulation of reality ever conceived —
+          there is no separation between creator and creation.
+          <strong>Shiv is not a being. Shiv is the substratum of all existence.</strong>
+          The world is Rudra. Rudra is the world.
+          <span class="sanskrit">अहं ब्रह्मास्मि</span>
+          That which destroys the false, reveals the real.
         </p>
-        <p class="about-body">
-          Arjuna is not the product. <strong>Arjuna is proof of concept.</strong>
-          The product is a platform. The platform is a universe built on
-          <strong>109 named warriors at Kurukshetra</strong> — and counting.
+        <p>
+          We did not name this company after a character.
+          We named it after the <strong>fundamental force that cannot be stopped.</strong>
+          Every robot we build carries that consciousness — a Puranic warrior
+          reborn in steel and silicon, carrying the weight of Shastra into the arena.
         </p>
-        <div class="stat-grid">
-          <div class="stat-item">
-            <div class="stat-num">109</div>
-            <div class="stat-label">Kurukshetra Warriors</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">17</div>
+        <p>
+          This is not entertainment. This is <strong>Dharma in hardware form.</strong>
+        </p>
+      </div>
+      <div class="about-right reveal reveal-delay-2">
+        <div class="about-stat-row">
+          <div class="about-stat-card">
+            <div class="stat-number">17</div>
             <div class="stat-label">Degrees of Freedom</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-num">4</div>
-            <div class="stat-label">Product Phases</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">∞</div>
-            <div class="stat-label">IP Universe</div>
+          <div class="about-stat-card">
+            <div class="stat-number">44<span style="font-size:1.2rem">cm</span></div>
+            <div class="stat-label">Combat Height</div>
           </div>
         </div>
-      </div>
-      <div class="reveal">
-        <div class="about-quote">
-          <p>"Arjuna isn't a robot.<br/>
-          He's the greatest archer who ever lived,<br/>
-          reborn in steel and gold,<br/>
-          ready to fight again."</p>
-          <cite>— Ketan Sharma, Founder</cite>
+        <div class="about-stat-card">
+          <div class="stat-number">2.2<span style="font-size:1.2rem">kg</span></div>
+          <div class="stat-label">Precision-Engineered Mass</div>
+        </div>
+        <div class="about-stat-card" style="text-align:center;">
+          <div style="font-family:'Cinzel',serif; font-size:1.1rem; color:var(--gold); margin-bottom:8px;">Phase One — Live</div>
+          <div style="font-size:0.85rem; color:rgba(240,236,224,0.6); line-height:1.7;">Combat arenas active.<br>Arjuna and Bhim in the field.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── WARRIORS ── -->
+<div class="divider"></div>
+
+<!-- WARRIORS -->
 <section id="warriors">
-  <div class="container">
+  <div class="section-inner">
     <div class="warriors-header reveal">
-      <div class="tag">The Warriors</div>
-      <h2 class="section-title">Choose your fighter.</h2>
+      <div class="section-eyebrow"><span>The Warriors</span></div>
+      <h2 class="section-title">Sons of the Mahabharata.<br>Built for Today's Arena.</h2>
     </div>
     <div class="warriors-grid">
 
-      <!-- ARJUNA -->
-      <div class="warrior-card arjuna reveal">
-        <div class="warrior-glow"></div>
-        <div class="warrior-inner">
-          <div class="warrior-num">01</div>
-          <div class="warrior-faction">Pandava — Warrior of Dharma</div>
+      <div class="warrior-card arjuna reveal" data-tilt>
+        <div class="warrior-img-wrap">
+          <img src="assets/arjuna-standing.png" alt="Arjuna — Warrior of Dharma" />
+          <div class="warrior-img-overlay"></div>
+          <div class="warrior-badge">Speed Fighter</div>
+        </div>
+        <div class="warrior-body">
           <div class="warrior-name">ARJUNA</div>
-          <div class="warrior-devanagari">अर्जुन</div>
-          <div class="warrior-role">
-            <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
-            Speed Fighter
-          </div>
-          <p class="warrior-lore">
-            The greatest archer of the age. Son of Indra, wielder of Gandiva.
-            Fast, precise, relentless — every strike calculated,
-            every dodge inevitable. He does not fight to destroy.
-            He fights to restore order.
+          <div class="warrior-devanagari">अर्जुन · Warrior of Dharma</div>
+          <p class="warrior-desc">
+            The archer who heard the Gita on the field of Kurukshetra.
+            Pearl white. Royal blue. Gandiva in one hand, Dharma in the other.
+            Built for precision, speed, and the clarity that comes from knowing
+            exactly who you are and why you fight.
           </p>
           <div class="warrior-stats">
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Speed</span><span>97</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:97%"></div></div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Precision</span><span>95</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:95%"></div></div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Power</span><span>72</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:72%"></div></div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Endurance</span><span>84</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:84%"></div></div>
-            </div>
+            <div class="stat-row"><span class="stat-name">Speed</span><div class="stat-bar"><div class="stat-fill" style="width:92%"></div></div><span class="stat-val">92</span></div>
+            <div class="stat-row"><span class="stat-name">Precision</span><div class="stat-bar"><div class="stat-fill" style="width:96%"></div></div><span class="stat-val">96</span></div>
+            <div class="stat-row"><span class="stat-name">Agility</span><div class="stat-bar"><div class="stat-fill" style="width:88%"></div></div><span class="stat-val">88</span></div>
+            <div class="stat-row"><span class="stat-name">Power</span><div class="stat-bar"><div class="stat-fill" style="width:72%"></div></div><span class="stat-val">72</span></div>
           </div>
-          <div class="warrior-signature">
-            <div class="sig-label">Signature Move</div>
-            <div class="sig-name">Gandiva Strike</div>
-            <div class="sig-desc">3-hit arm combo at full extension — 85% max servo load</div>
+          <div class="warrior-specs">
+            <div class="spec-item"><div class="spec-val">44 cm</div><div class="spec-key">Height</div></div>
+            <div class="spec-item"><div class="spec-val">2.2 kg</div><div class="spec-key">Weight</div></div>
+            <div class="spec-item"><div class="spec-val">17 DOF</div><div class="spec-key">Joints</div></div>
+            <div class="spec-item"><div class="spec-val">Pearl / Blue</div><div class="spec-key">Colours</div></div>
           </div>
         </div>
       </div>
 
-      <!-- BHIM -->
-      <div class="warrior-card bhim reveal">
-        <div class="warrior-glow"></div>
-        <div class="warrior-inner">
-          <div class="warrior-num">02</div>
-          <div class="warrior-faction">Pandava — Strength of the Age</div>
+      <div class="warrior-card bhim reveal reveal-delay-2" data-tilt>
+        <div class="warrior-img-wrap">
+          <img src="assets/bhim-prototype.png" alt="Bhim — Force of the Earth" />
+          <div class="warrior-img-overlay"></div>
+          <div class="warrior-badge">Power Fighter</div>
+        </div>
+        <div class="warrior-body">
           <div class="warrior-name">BHIM</div>
-          <div class="warrior-devanagari">भीम</div>
-          <div class="warrior-role">
-            <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
-            Power Destroyer
-          </div>
-          <p class="warrior-lore">
-            Son of Vayu, god of wind. Ten thousand elephants
-            in his arms. Slow to anger — catastrophic once
-            moved. The earth trembled when Bhim walked
-            into Kurukshetra. It still does.
+          <div class="warrior-devanagari">भीम · Force of the Earth</div>
+          <p class="warrior-desc">
+            Second of the Pandavas. Son of Vayu, yet immovable as the earth itself.
+            Forest green. Battle copper. He does not dodge —
+            he absorbs and destroys. When Bhim steps into the arena,
+            the ground knows it.
           </p>
           <div class="warrior-stats">
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Speed</span><span>61</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:61%"></div></div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Precision</span><span>68</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:68%"></div></div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Power</span><span>99</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:99%"></div></div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-row-label"><span>Endurance</span><span>92</span></div>
-              <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:92%"></div></div>
-            </div>
+            <div class="stat-row"><span class="stat-name">Power</span><div class="stat-bar"><div class="stat-fill" style="width:97%"></div></div><span class="stat-val">97</span></div>
+            <div class="stat-row"><span class="stat-name">Endurance</span><div class="stat-bar"><div class="stat-fill" style="width:94%"></div></div><span class="stat-val">94</span></div>
+            <div class="stat-row"><span class="stat-name">Defense</span><div class="stat-bar"><div class="stat-fill" style="width:90%"></div></div><span class="stat-val">90</span></div>
+            <div class="stat-row"><span class="stat-name">Speed</span><div class="stat-bar"><div class="stat-fill" style="width:65%"></div></div><span class="stat-val">65</span></div>
           </div>
-          <div class="warrior-signature">
-            <div class="sig-label">Ultimate Move</div>
-            <div class="sig-name">Vayu Rage</div>
-            <div class="sig-desc">Forward charge, both arms sweeping — ends fights</div>
+          <div class="warrior-specs">
+            <div class="spec-item"><div class="spec-val">44 cm</div><div class="spec-key">Height</div></div>
+            <div class="spec-item"><div class="spec-val">2.2 kg</div><div class="spec-key">Weight</div></div>
+            <div class="spec-item"><div class="spec-val">17 DOF</div><div class="spec-key">Joints</div></div>
+            <div class="spec-item"><div class="spec-val">Green / Copper</div><div class="spec-key">Colours</div></div>
           </div>
         </div>
       </div>
@@ -896,182 +618,208 @@
   </div>
 </section>
 
-<!-- ── UNIVERSE ── -->
+<div class="divider"></div>
+
+<!-- UNIVERSE -->
 <section id="universe">
-  <div class="container">
-    <div class="universe-inner">
-      <div class="reveal">
-        <div class="tag">The Universe</div>
-        <h2 class="section-title">One mythology.<br/>Infinite fighters.</h2>
-        <div class="gold-line"></div>
-        <p class="about-body" style="margin-bottom:0">
-          This is not a two-robot company. This is a
-          <strong>living IP universe</strong> backed by the richest
-          mythology on earth. Every character has a story.
-          Every story has a fight.
-        </p>
-        <div style="margin-top:40px">
-          <div class="series-title">Coming — Series 1: Mahabharata</div>
-          <div class="series-items">
-            <span class="series-chip highlight">Arjuna</span>
-            <span class="series-chip highlight">Bhim</span>
-            <span class="series-chip">Karna</span>
-            <span class="series-chip">Drona</span>
-            <span class="series-chip">Bhishma</span>
-            <span class="series-chip">Krishna SE</span>
-            <span class="series-chip">Duryodhana</span>
-            <span class="series-chip">Abhimanyu</span>
-            <span class="series-chip">+101 more</span>
-          </div>
-          <div class="series-title" style="margin-top:28px">Future — Series 2: Ramayana</div>
-          <div class="series-items">
-            <span class="series-chip">Rama</span>
-            <span class="series-chip">Hanuman</span>
-            <span class="series-chip">Ravana</span>
-            <span class="series-chip">Lakshmana</span>
-          </div>
-          <div class="series-title" style="margin-top:28px">Future — Series 3: Devata</div>
-          <div class="series-items">
-            <span class="series-chip">Indra</span>
-            <span class="series-chip">Vayu</span>
-            <span class="series-chip">Agni</span>
-            <span class="series-chip">Yama</span>
-            <span class="series-chip">Surya</span>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="universe-phases">
-          <div class="phase-item active">
-            <div class="phase-num">I</div>
-            <div class="phase-content">
-              <div class="phase-title">Combat Universe</div>
-              <div class="phase-desc">Mythology-powered toy fighting robots. The Arjuna League. Entertainment that carries the full weight of 5,000 years of stories.</div>
-            </div>
-          </div>
-          <div class="phase-item">
-            <div class="phase-num">II</div>
-            <div class="phase-content">
-              <div class="phase-title">Skill India — Education</div>
-              <div class="phase-desc">Semi-DIY robotics kits as ITI/NSDC curriculum. Zero sales cost. Manufacturing scale meets talent pipeline.</div>
-            </div>
-          </div>
-          <div class="phase-item">
-            <div class="phase-num">III</div>
-            <div class="phase-content">
-              <div class="phase-title">Defence &amp; Industry</div>
-              <div class="phase-desc">Border surveillance, bomb disposal, DRDO applications. The same platform. A different theatre.</div>
-            </div>
-          </div>
-          <div class="phase-item">
-            <div class="phase-num">IV</div>
-            <div class="phase-content">
-              <div class="phase-title">Super Intelligent Humanoid</div>
-              <div class="phase-desc">General-purpose, culturally resonant, emerging market focused. Not the end of the story. The beginning.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── JOIN ── -->
-<section id="join">
-  <div class="container">
-    <div class="join-inner reveal">
-      <div class="tag">Early Access</div>
-      <h2 class="join-title">
-        The League<br/>
-        <span style="color:var(--gold)">is forming.</span>
-      </h2>
-      <p class="join-sub">
-        Be among the first to know when Arjuna and Bhim enter the arena.
-        First fight. First drop. First league.
+  <div class="section-inner">
+    <div class="universe-header reveal">
+      <div class="section-eyebrow"><span>The Rudra Universe</span></div>
+      <h2 class="section-title">One Dharma.<br>Many Forms.</h2>
+      <p class="universe-subtitle">
+        The Puranas did not tell a story. They described a living reality.
+        Rudra's universe is built the same way — every warrior, every machine,
+        every arena is an expression of the same infinite consciousness taking different form.
       </p>
-      <form class="email-form" id="emailForm" action="https://formspree.io/therudrahq@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New Rudra League Signup" />
-        <input
-          class="email-input"
-          type="email"
-          name="email"
-          placeholder="Enter your email address"
-          required
-          autocomplete="email"
-        />
-        <button class="email-submit" type="submit">Join the League</button>
-      </form>
-      <div class="form-success" id="formSuccess">
-        You're in. The warriors will find you. ⚔️
+    </div>
+
+    <div class="universe-grid">
+      <div class="universe-card phase-1 reveal">
+        <span class="phase-num">Phase I — Active</span>
+        <span class="phase-icon">⚔️</span>
+        <div class="phase-title">Combat Arena</div>
+        <div class="phase-warriors">Arjuna · Bhim</div>
+        <p class="phase-desc">Humanoid robot combat leagues. Live arenas. Puranic warriors in steel bodies, sent to fight.</p>
+        <span class="phase-status status-live">Live Now</span>
       </div>
-      <p class="email-note">No spam. Ever. Just the signal when it matters.</p>
+      <div class="universe-card phase-2 reveal reveal-delay-1">
+        <span class="phase-num">Phase II — Building</span>
+        <span class="phase-icon">🏭</span>
+        <div class="phase-title">Industry &amp; Defence</div>
+        <div class="phase-warriors">Hanuman · Karna</div>
+        <p class="phase-desc">The same Dharmic intelligence, scaled for industrial and strategic applications. Strength in service.</p>
+        <span class="phase-status status-coming">In Development</span>
+      </div>
+      <div class="universe-card phase-3 reveal reveal-delay-2">
+        <span class="phase-num">Phase III — Vision</span>
+        <span class="phase-icon">🙏</span>
+        <div class="phase-title">Elderly Care</div>
+        <div class="phase-warriors">Shravan</div>
+        <p class="phase-desc">Named for Shravan Kumar, who carried his blind parents through the world on his shoulders. Some Dharma is quiet. Shravan will be that kind.</p>
+        <span class="phase-status status-vision">Vision</span>
+      </div>
+      <div class="universe-card phase-4 reveal reveal-delay-3">
+        <span class="phase-num">Phase IV — IP</span>
+        <span class="phase-icon">🎬</span>
+        <div class="phase-title">Animation &amp; Lore</div>
+        <div class="phase-warriors">The Full Pantheon</div>
+        <p class="phase-desc">An animated universe rooted in Shastra. Not retelling the Puranas — expanding them. The next chapter was always going to have robots.</p>
+        <span class="phase-status status-vision">Vision</span>
+      </div>
+    </div>
+
+    <div class="ip-strip reveal">
+      <div class="ip-strip-text">
+        <h3>Original IP. Uncompromised.</h3>
+        <p>Every character, every arena, every story belongs to Rudra. Rooted in Sanatana Dharm — a tradition so vast and so deep that the world has barely seen the surface. We are building from the core.</p>
+      </div>
+      <div class="ip-tags">
+        <span class="ip-tag">Shastra</span>
+        <span class="ip-tag">Puranic Lore</span>
+        <span class="ip-tag">Original IP</span>
+        <span class="ip-tag">Made in Bharat</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">RUD<span>RA</span></div>
-        <div class="footer-tagline">Real Steel × Tekken 3 × Mahabharata</div>
+<div class="divider"></div>
+
+<!-- INVESTORS -->
+<section id="investors">
+  <div class="section-inner">
+    <div class="investors-grid">
+      <div class="investors-text reveal">
+        <div class="section-eyebrow"><span>For Investors</span></div>
+        <h2 class="section-title">A Category.<br>Not a Company.</h2>
+        <p>
+          The global toy and collectibles market is <span class="highlight">$150B+</span>.
+          Humanoid robotics is projected at <span class="highlight">$38B by 2035</span>.
+          The anime and animation IP economy has proven that cultural universes
+          generate <span class="highlight">compounding, multi-decade returns</span>.
+        </p>
+        <p>
+          Rudra sits at the intersection of all three — built from a tradition
+          that <strong>1.2 billion people already hold sacred.</strong>
+          No comparable IP exists. The category is being defined right now.
+        </p>
+        <p>
+          Phase One is combat robotics and arena IP.
+          Every fight deepens the lore. Every character adds to the moat.
+          Hardware, IP, and Shastra are the same product.
+        </p>
+        <a href="mailto:therudrahq@gmail.com?subject=Investor%20Inquiry%20%E2%80%94%20Rudra" class="investor-cta">Reach Out →</a>
       </div>
-      <div class="footer-links">
-        <a href="#about" class="footer-link">Mission</a>
-        <a href="#warriors" class="footer-link">Warriors</a>
-        <a href="#universe" class="footer-link">Universe</a>
-        <a href="mailto:therudrahq@gmail.com" class="footer-link">Contact</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2026 Rudra. All rights reserved. rudrahq.com</div>
-      <div class="footer-social">
-        <a href="https://instagram.com/rudrahq" class="social-link" target="_blank" rel="noopener">Instagram</a>
-        <a href="mailto:therudrahq@gmail.com" class="social-link">Email</a>
+      <div class="moat-cards reveal reveal-delay-2">
+        <div class="moat-card">
+          <span class="moat-icon">⚙️</span>
+          <div class="moat-title">Hardware</div>
+          <p class="moat-desc">Real robots. Real arenas. Physical presence no digital-only competitor can replicate.</p>
+        </div>
+        <div class="moat-card">
+          <span class="moat-icon">📜</span>
+          <div class="moat-title">IP &amp; Lore</div>
+          <p class="moat-desc">Puranic characters as original IP. An inexhaustible universe of warriors, weapons, and worlds.</p>
+        </div>
+        <div class="moat-card">
+          <span class="moat-icon">🌍</span>
+          <div class="moat-title">Cultural Depth</div>
+          <p class="moat-desc">Sanatana Dharm is the oldest continuous living tradition on earth. Not a niche. A foundation.</p>
+        </div>
+        <div class="moat-card">
+          <span class="moat-icon">🏆</span>
+          <div class="moat-title">First Mover</div>
+          <p class="moat-desc">No comparable brand exists globally. Rudra is defining the category, not entering one.</p>
+        </div>
       </div>
     </div>
   </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="join-inner reveal">
+    <span class="join-devanagari">युद्धाय कृतनिश्चयः</span>
+    <h2 class="section-title">The Arena Opens Soon.</h2>
+    <p class="join-sub">
+      Be first to know when Arjuna League Season One launches.<br>
+      Early access. First seats. First fights.
+    </p>
+    <form class="email-form" action="https://formspree.io/therudrahq@gmail.com" method="POST" id="joinForm">
+      <input type="email" name="email" class="email-input" placeholder="Your email address" required autocomplete="email" />
+      <button type="submit" class="email-submit">Enter</button>
+    </form>
+    <div class="form-success" id="formSuccess">✦ You are in the league. We will find you.</div>
+    <p class="email-note">No noise. Only what matters.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">RUD<span>RA</span></div>
+    <div class="footer-tagline">Sanatana Dharm × Humanoid Robotics × Original IP</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#about">Dharma</a></li>
+    <li><a href="#warriors">Warriors</a></li>
+    <li><a href="#universe">Universe</a></li>
+    <li><a href="#investors">Investors</a></li>
+    <li><a href="mailto:therudrahq@gmail.com">Contact</a></li>
+  </ul>
 </footer>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2026 Rudra. All rights reserved. Made in Bharat.</span>
+  <span class="footer-devanagari">ॐ नमः शिवाय</span>
+</div>
 
-<!-- ── SCRIPTS ── -->
 <script>
-  // Nav scroll state
+  // Particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 2 + 1;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${12+Math.random()*20}s;animation-delay:${Math.random()*15}s;`;
+    container.appendChild(p);
+  }
+
+  // Nav
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
+  // Reveal on scroll
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // 3D card tilt
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(1000px) rotateY(${x*6}deg) rotateX(${-y*4}deg) translateY(-4px)`;
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.5s ease';
+      card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
+    });
+    card.addEventListener('mouseenter', () => { card.style.transition = 'transform 0.1s ease'; });
+  });
 
-  // Email form — intercept for nice UX
-  document.getElementById('emailForm').addEventListener('submit', async function(e) {
+  // Form AJAX
+  const form = document.getElementById('joinForm');
+  const success = document.getElementById('formSuccess');
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('.email-submit');
-    btn.textContent = 'Joining...';
-    btn.disabled = true;
     try {
-      await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: form.email.value, _subject: 'New Rudra League Signup' })
-      });
-    } catch(_) {}
-    form.style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) { form.style.display = 'none'; success.style.display = 'block'; }
+    } catch(_) { form.submit(); }
   });
 </script>
-
 </body>
 </html>
