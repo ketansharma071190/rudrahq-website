@@ -170,6 +170,20 @@
       padding-bottom: 10vh;
     }
 
+    .hero-emblem {
+      display: block;
+      width: clamp(180px, 22vw, 280px);
+      height: clamp(180px, 22vw, 280px);
+      mix-blend-mode: screen;
+      margin-bottom: 40px;
+      animation: emblemIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      filter: brightness(1.05);
+    }
+    @keyframes emblemIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
     .hero-eyebrow {
       font-size: 11px; font-weight: 700;
       letter-spacing: 0.28em; text-transform: uppercase;
@@ -791,6 +805,7 @@
 
   <div class="container">
     <div class="hero-content">
+      <img src="rudra-logo.png" alt="Rudra emblem" class="hero-emblem" />
       <div class="hero-eyebrow">Combat Robotics · Sanatana · India</div>
 
       <h1 class="hero-h1">
