@@ -371,7 +371,7 @@
     }
 
     /* ── WARRIORS ────────────────────────────── */
-    #warriors { padding: 100px 0 0; }
+    #warriors { padding: 100px 0; }
     .warriors-header { text-align: center; margin-bottom: 72px; }
     .warriors-header .section-title { margin-bottom: 16px; }
     .warriors-header-sub {
@@ -380,113 +380,107 @@
       margin: 0 auto; line-height: 1.65;
     }
 
-    /* Full-width alternating warrior feature */
-    .warrior-feature {
+    /* Side-by-side warrior cards */
+    .warriors-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 700px;
-      border-top: 1px solid var(--border);
-      position: relative; overflow: hidden;
+      gap: 3px;
     }
-    .warrior-feature.img-left { }
-    .wf-image {
-      position: relative; overflow: hidden;
+
+    .warrior-card {
+      position: relative;
       background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.3s;
     }
-    .wf-image img {
-      width: 100%; height: 100%;
+    .warrior-card:hover { border-color: var(--gold-dim); }
+
+    .warrior-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .warrior-card.arjuna::before { background: linear-gradient(90deg, var(--blue-lt), var(--gold)); }
+    .warrior-card.bhim::before   { background: linear-gradient(90deg, var(--green-lt), var(--gold)); }
+
+    .warrior-glow {
+      position: absolute; top: 0; right: 0;
+      width: 55%; height: 45%;
+      pointer-events: none; z-index: 0; opacity: 0.1;
+    }
+    .warrior-card.arjuna .warrior-glow { background: radial-gradient(circle at top right, var(--blue-lt), transparent); }
+    .warrior-card.bhim   .warrior-glow { background: radial-gradient(circle at top right, var(--green-lt), transparent); }
+
+    .warrior-photo {
+      width: 100%; height: 320px;
       object-fit: cover; object-position: center top;
       opacity: 0.88;
-      transition: opacity 0.4s, transform 0.6s;
+      transition: opacity 0.4s;
     }
-    .warrior-feature:hover .wf-image img {
-      opacity: 0.95;
-      transform: scale(1.02);
-    }
-    .wf-image-overlay {
-      position: absolute; inset: 0;
-      pointer-events: none;
-    }
-    .warrior-feature.arjuna .wf-image-overlay {
-      background: linear-gradient(to right, transparent 60%, rgba(8,6,4,0.6) 100%);
-    }
-    .warrior-feature.bhim .wf-image-overlay {
-      background: linear-gradient(to left, transparent 60%, rgba(8,6,4,0.6) 100%);
-    }
-    .wf-content {
-      padding: 72px 64px;
-      display: flex; flex-direction: column; justify-content: center;
-      background: var(--card);
-      position: relative;
-    }
-    .warrior-feature::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      z-index: 2;
-    }
-    .warrior-feature.arjuna::before { background: linear-gradient(90deg, var(--blue-lt), var(--gold)); }
-    .warrior-feature.bhim::before   { background: linear-gradient(90deg, var(--green-lt), var(--gold)); }
+    .warrior-card:hover .warrior-photo { opacity: 0.96; }
 
-    .wf-num {
+    .warrior-inner { position: relative; z-index: 1; padding: 40px 44px 48px; }
+
+    .warrior-num {
       font-family: 'Cinzel', serif;
-      font-size: 100px; font-weight: 900; line-height: 1;
+      font-size: 80px; font-weight: 900; line-height: 1;
       color: var(--border);
-      position: absolute; right: 40px; top: 28px;
-      user-select: none; pointer-events: none;
+      position: absolute; right: 36px; top: 28px;
+      user-select: none;
     }
-    .wf-faction {
-      font-size: 10px; font-weight: 700;
+    .warrior-faction {
+      font-size: 9px; font-weight: 700;
       letter-spacing: 0.28em; text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-    .warrior-feature.arjuna .wf-faction { color: var(--blue-lt); }
-    .warrior-feature.bhim   .wf-faction { color: var(--green-lt); }
+    .warrior-card.arjuna .warrior-faction { color: var(--blue-lt); }
+    .warrior-card.bhim   .warrior-faction { color: var(--green-lt); }
 
-    .wf-name {
+    .warrior-name {
       font-family: 'Cinzel', serif;
-      font-size: clamp(40px, 5vw, 64px);
+      font-size: clamp(34px, 3.5vw, 52px);
       font-weight: 900; letter-spacing: 0.06em;
       line-height: 1; margin-bottom: 4px;
     }
-    .wf-deva {
-      font-size: 22px; font-weight: 400;
-      color: var(--gold-dim); margin-bottom: 16px;
+    .warrior-deva {
+      font-size: 20px; font-weight: 400;
+      color: var(--gold-dim); margin-bottom: 18px;
       letter-spacing: 0.04em; display: block;
     }
-    .wf-role {
+    .warrior-role {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 10px; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 6px 16px; margin-bottom: 28px; border: 1px solid;
+      padding: 6px 14px; margin-bottom: 24px; border: 1px solid;
     }
-    .warrior-feature.arjuna .wf-role { color: var(--blue-lt); border-color: var(--blue); }
-    .warrior-feature.bhim   .wf-role { color: var(--green-lt); border-color: var(--green); }
+    .warrior-card.arjuna .warrior-role { color: var(--blue-lt); border-color: var(--blue); }
+    .warrior-card.bhim   .warrior-role { color: var(--green-lt); border-color: var(--green); }
 
-    .wf-lore {
-      font-size: 16px; font-weight: 300;
+    .warrior-lore {
+      font-size: 15px; font-weight: 300;
       color: #a09880; line-height: 1.8;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .wf-weapons {
-      margin: 20px 0 28px;
-      padding: 18px 20px;
+    .warrior-weapons {
+      margin: 18px 0 24px;
+      padding: 16px 18px;
       background: var(--bg);
       border: 1px solid var(--border);
       border-left: 2px solid var(--gold-dim);
     }
-    .wf-weapons-label {
+    .warrior-weapons-label {
       font-size: 9px; font-weight: 700;
       letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 6px;
+      color: var(--muted); margin-bottom: 5px;
     }
-    .wf-weapons-list {
+    .warrior-weapons-list {
       font-family: 'Cinzel', serif;
-      font-size: 14px; font-weight: 600;
+      font-size: 13px; font-weight: 600;
       color: var(--gold); letter-spacing: 0.04em;
     }
 
     /* Stat bars */
-    .wf-stats { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
-    .srow { display: flex; flex-direction: column; gap: 6px; }
+    .warrior-stats { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .srow { display: flex; flex-direction: column; gap: 5px; }
     .srow-label {
       display: flex; justify-content: space-between;
       font-size: 10px; font-weight: 700;
@@ -499,11 +493,11 @@
       height: 100%; border-radius: 1px;
       transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
     }
-    .warrior-feature.arjuna .srow-fill { background: var(--blue-lt); }
-    .warrior-feature.bhim   .srow-fill { background: var(--green-lt); }
+    .warrior-card.arjuna .srow-fill { background: var(--blue-lt); }
+    .warrior-card.bhim   .srow-fill { background: var(--green-lt); }
 
-    .wf-sig {
-      padding-top: 24px;
+    .warrior-sig {
+      padding-top: 22px;
       border-top: 1px solid var(--border);
     }
     .sig-label {
@@ -513,11 +507,11 @@
     }
     .sig-name {
       font-family: 'Cinzel', serif;
-      font-size: 18px; font-weight: 700;
+      font-size: 17px; font-weight: 700;
       color: var(--gold); letter-spacing: 0.05em; margin-bottom: 4px;
     }
     .sig-desc {
-      font-size: 14px; font-weight: 300; color: var(--muted);
+      font-size: 13px; font-weight: 300; color: var(--muted);
     }
 
     /* ── COMING WARRIORS ─────────────────────── */
@@ -746,15 +740,11 @@
 
     /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 1024px) {
-      .warrior-feature { grid-template-columns: 1fr; min-height: unset; }
-      .wf-image { height: 380px; }
-      .wf-image-overlay { display: none; }
-      .wf-num { display: none; }
       .coming-grid { grid-template-columns: repeat(2, 1fr); }
       .heritage-pillars { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 900px) {
-      .mission-grid, .universe-inner { grid-template-columns: 1fr; gap: 52px; }
+      .mission-grid, .universe-inner, .warriors-grid { grid-template-columns: 1fr; gap: 3px; }
       .nav-links { display: none; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
@@ -866,18 +856,17 @@
     <div class="mission-grid">
       <div class="reveal">
         <div class="tag">The Mission</div>
-        <h2 class="section-title">Not a toy.<br/>A universe.</h2>
+        <h2 class="section-title">A living universe<br/>of combat warriors.</h2>
         <div class="gold-line"></div>
         <p class="mission-body">
-          Most robot companies <strong>start with technology</strong> and look for a market.
-          We inverted that. We started with the <strong>deepest stories on earth</strong>
-          and built the technology to bring those warriors to life in physical form.
+          Rudra <strong>started with the stories.</strong> The deepest, most battle-tested
+          stories on earth — and built the technology to bring those warriors to life
+          in physical form.
         </p>
         <p class="mission-body">
-          Arjuna is not the product. <strong>Arjuna is proof of concept.</strong>
-          The product is a platform. The platform is a universe built on the warriors
-          of the Mahabharata, the Ramayana, and every great story Bharat has told —
-          <strong>and counting.</strong>
+          Arjuna is <strong>proof of concept.</strong> The platform is a universe built
+          on the warriors of the Mahabharata, the Ramayana, and every great story
+          Bharat has told — <strong>and counting.</strong>
         </p>
         <div class="stat-grid">
           <div class="stat-box">
@@ -960,125 +949,116 @@
       <h2 class="section-title">Choose your fighter.</h2>
       <p class="warriors-header-sub">Two warriors. Two philosophies. One arena. The first chapter of a universe that has no end.</p>
     </div>
-  </div>
 
-  <!-- ARJUNA -->
-  <div class="warrior-feature arjuna reveal">
-    <div class="wf-image">
-      <img src="assets/arjuna-standing.png" alt="Arjuna — The World's Greatest Archer" loading="lazy" />
-      <div class="wf-image-overlay"></div>
-    </div>
-    <div class="wf-content">
-      <div class="wf-num">01</div>
-      <div class="wf-faction">Pandava · Warrior of Dharma</div>
-      <div class="wf-name">ARJUNA</div>
-      <span class="wf-deva">अर्जुन</span>
-      <div class="wf-role">
-        <svg width="7" height="7" viewBox="0 0 7 7"><circle cx="3.5" cy="3.5" r="3.5" fill="currentColor"/></svg>
-        Speed Fighter
-      </div>
-      <p class="wf-lore">
-        Born to Kunti by the blessing of Indra, Arjuna was given something rarer than strength —
-        absolute clarity of eye and purpose. His arrow never sought what it could not find.
-      </p>
-      <p class="wf-lore">
-        At Kurukshetra, he hesitated. Then Krishna spoke, and hesitation became history.
-        Arjuna became the instrument through which dharma restored itself —
-        not with rage, but with cold precision.
-      </p>
-      <p class="wf-lore">
-        In steel: speed over mass. Every servo calibrated for rapid, cascading strikes
-        that overwhelm before the opponent can read the pattern.
-      </p>
-      <div class="wf-weapons">
-        <div class="wf-weapons-label">Weapons</div>
-        <div class="wf-weapons-list">Gandiva · Brahmastra · Pashupatastra</div>
-      </div>
-      <div class="wf-stats">
-        <div class="srow">
-          <div class="srow-label"><span>Speed</span><span>97</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="97"></div></div>
-        </div>
-        <div class="srow">
-          <div class="srow-label"><span>Precision</span><span>95</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="95"></div></div>
-        </div>
-        <div class="srow">
-          <div class="srow-label"><span>Power</span><span>72</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="72"></div></div>
-        </div>
-        <div class="srow">
-          <div class="srow-label"><span>Endurance</span><span>84</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="84"></div></div>
-        </div>
-      </div>
-      <div class="wf-sig">
-        <div class="sig-label">Signature Move</div>
-        <div class="sig-name">Gandiva Strike</div>
-        <div class="sig-desc">3-hit rapid arm combo at full extension — 85% max servo load, executed in under 0.4 seconds</div>
-      </div>
-    </div>
-  </div>
+    <div class="warriors-grid">
 
-  <!-- BHIM -->
-  <div class="warrior-feature bhim img-left reveal">
-    <div class="wf-content">
-      <div class="wf-num">02</div>
-      <div class="wf-faction">Pandava · Strength of the Age</div>
-      <div class="wf-name">BHIM</div>
-      <span class="wf-deva">भीम</span>
-      <div class="wf-role">
-        <svg width="7" height="7" viewBox="0 0 7 7"><circle cx="3.5" cy="3.5" r="3.5" fill="currentColor"/></svg>
-        Power Destroyer
-      </div>
-      <p class="wf-lore">
-        Son of Vayu — the wind god who breathes life into all things. Bhim carried that
-        wind in his arms: deceptively fast for his size, catastrophic when it landed.
-        Vyasa gave him the measure of ten thousand elephants and called it approximate.
-      </p>
-      <p class="wf-lore">
-        When Bhim walked into Kurukshetra, the earth remembered him from before this birth.
-        He killed the Kauravas one by one, across eighteen days, until Duryodhana's thighs
-        broke under the Gada and the war was over.
-      </p>
-      <p class="wf-lore">
-        In steel: mass over finesse. Forward pressure. Relentless advance. Every servo
-        tuned for sustained maximum-load output — built to end fights, not extend them.
-      </p>
-      <div class="wf-weapons">
-        <div class="wf-weapons-label">Weapons</div>
-        <div class="wf-weapons-list">Kaumodaki Gada · Bare Hands · Ground Slam</div>
-      </div>
-      <div class="wf-stats">
-        <div class="srow">
-          <div class="srow-label"><span>Speed</span><span>61</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="61"></div></div>
+      <!-- ARJUNA -->
+      <div class="warrior-card arjuna reveal">
+        <div class="warrior-glow"></div>
+        <img src="assets/arjuna-standing.png" alt="Arjuna" class="warrior-photo" loading="lazy" />
+        <div class="warrior-inner">
+          <div class="warrior-num">01</div>
+          <div class="warrior-faction">Pandava · Warrior of Dharma</div>
+          <div class="warrior-name">ARJUNA</div>
+          <span class="warrior-deva">अर्जुन</span>
+          <div class="warrior-role">
+            <svg width="7" height="7" viewBox="0 0 7 7"><circle cx="3.5" cy="3.5" r="3.5" fill="currentColor"/></svg>
+            Speed Fighter
+          </div>
+          <p class="warrior-lore">
+            Born to Kunti by the blessing of Indra, Arjuna was given something rarer than strength —
+            absolute clarity of eye and purpose. His arrow never sought what it could not find.
+          </p>
+          <p class="warrior-lore">
+            At Kurukshetra, he hesitated. Then Krishna spoke, and hesitation became history.
+            He became the instrument through which dharma restored itself —
+            with cold precision, not rage.
+          </p>
+          <div class="warrior-weapons">
+            <div class="warrior-weapons-label">Weapons</div>
+            <div class="warrior-weapons-list">Gandiva · Brahmastra · Pashupatastra</div>
+          </div>
+          <div class="warrior-stats">
+            <div class="srow">
+              <div class="srow-label"><span>Speed</span><span>97</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="97"></div></div>
+            </div>
+            <div class="srow">
+              <div class="srow-label"><span>Precision</span><span>95</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="95"></div></div>
+            </div>
+            <div class="srow">
+              <div class="srow-label"><span>Power</span><span>72</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="72"></div></div>
+            </div>
+            <div class="srow">
+              <div class="srow-label"><span>Endurance</span><span>84</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="84"></div></div>
+            </div>
+          </div>
+          <div class="warrior-sig">
+            <div class="sig-label">Signature Move</div>
+            <div class="sig-name">Gandiva Strike</div>
+            <div class="sig-desc">3-hit arm cascade at full extension — speed before power, every time</div>
+          </div>
         </div>
-        <div class="srow">
-          <div class="srow-label"><span>Precision</span><span>68</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="68"></div></div>
-        </div>
-        <div class="srow">
-          <div class="srow-label"><span>Power</span><span>99</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="99"></div></div>
-        </div>
-        <div class="srow">
-          <div class="srow-label"><span>Endurance</span><span>92</span></div>
-          <div class="srow-bg"><div class="srow-fill" data-w="92"></div></div>
+      </div>
+
+      <!-- BHIM -->
+      <div class="warrior-card bhim reveal">
+        <div class="warrior-glow"></div>
+        <img src="assets/bhim-standing.png" alt="Bhim" class="warrior-photo" loading="lazy" />
+        <div class="warrior-inner">
+          <div class="warrior-num">02</div>
+          <div class="warrior-faction">Pandava · Strength of the Age</div>
+          <div class="warrior-name">BHIM</div>
+          <span class="warrior-deva">भीम</span>
+          <div class="warrior-role">
+            <svg width="7" height="7" viewBox="0 0 7 7"><circle cx="3.5" cy="3.5" r="3.5" fill="currentColor"/></svg>
+            Power Destroyer
+          </div>
+          <p class="warrior-lore">
+            Son of Vayu — the wind god who breathes life into all things. Bhim carried that
+            wind in his arms: deceptively fast for his size, catastrophic when it landed.
+            Vyasa measured his strength in ten thousand elephants and called it approximate.
+          </p>
+          <p class="warrior-lore">
+            He killed the Kauravas one by one across eighteen days. The war ended when
+            Duryodhana's thighs broke under the Gada. Bhim walked off Kurukshetra
+            having done what he came to do.
+          </p>
+          <div class="warrior-weapons">
+            <div class="warrior-weapons-label">Weapons</div>
+            <div class="warrior-weapons-list">Kaumodaki Gada · Bare Hands · Ground Slam</div>
+          </div>
+          <div class="warrior-stats">
+            <div class="srow">
+              <div class="srow-label"><span>Speed</span><span>61</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="61"></div></div>
+            </div>
+            <div class="srow">
+              <div class="srow-label"><span>Precision</span><span>68</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="68"></div></div>
+            </div>
+            <div class="srow">
+              <div class="srow-label"><span>Power</span><span>99</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="99"></div></div>
+            </div>
+            <div class="srow">
+              <div class="srow-label"><span>Endurance</span><span>92</span></div>
+              <div class="srow-bg"><div class="srow-fill" data-w="92"></div></div>
+            </div>
+          </div>
+          <div class="warrior-sig">
+            <div class="sig-label">Ultimate Move</div>
+            <div class="sig-name">Vayu Rage</div>
+            <div class="sig-desc">Full forward charge, both arms sweeping — built to end fights, not extend them</div>
+          </div>
         </div>
       </div>
-      <div class="wf-sig">
-        <div class="sig-label">Ultimate Move</div>
-        <div class="sig-name">Vayu Rage</div>
-        <div class="sig-desc">Full forward charge, both arms sweeping at 100% servo — designed to end fights in one sequence</div>
-      </div>
-    </div>
-    <div class="wf-image">
-      <img src="assets/bhim-standing.png" alt="Bhim — Strength of the Age" loading="lazy" />
-      <div class="wf-image-overlay"></div>
+
     </div>
   </div>
-
 </section>
 
 
@@ -1178,8 +1158,7 @@
         <h2 class="section-title">One dharma.<br/>Infinite fighters.</h2>
         <div class="gold-line"></div>
         <p class="mission-body" style="margin-bottom:0">
-          This is not a two-robot company. This is a
-          <strong>living IP universe</strong> backed by 7,000 years of Bharatiya legacy.
+          A <strong>living IP universe</strong> backed by 7,000 years of Bharatiya legacy.
           Every warrior has a dharma. Every dharma has a fight.
         </p>
 
