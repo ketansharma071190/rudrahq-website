@@ -13,8 +13,8 @@
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicon: warm trishul -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 80'%3E%3Crect width='44' height='80' fill='%23080604'/%3E%3Cpath d='M22 3 C25 11,26 22,24 34 L20 34 C18 22,19 11,22 3 Z' fill='%23c8920a'/%3E%3Cpath d='M20 34 C16 28,9 22,5 15 L8 13 C12 19,18 26,22 34 Z' fill='%23c8920a'/%3E%3Cpath d='M24 34 C28 28,35 22,39 15 L36 13 C32 19,26 26,22 34 Z' fill='%23c8920a'/%3E%3Crect x='12' y='34' width='20' height='2.5' fill='%23c8920a' rx='1'/%3E%3Crect x='20.5' y='37' width='3' height='39' fill='%23c8920a' rx='1.5'/%3E%3C/svg%3E" />
+  <!-- Favicon: Rudra trishul logo -->
+  <link rel="icon" type="image/png" href="rudra-logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -107,9 +107,15 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo {
+      display: flex; align-items: center; gap: 10px;
       font-family: 'Cinzel', serif;
       font-size: 22px; font-weight: 900;
       letter-spacing: 0.18em; color: var(--white);
+    }
+    .nav-logo img {
+      width: 36px; height: 36px;
+      mix-blend-mode: screen; /* makes black bg invisible on dark site */
+      filter: brightness(1.1);
     }
     .nav-logo span { color: var(--gold); }
     .nav-links { display: flex; gap: 40px; align-items: center; }
@@ -630,7 +636,7 @@
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">RUD<span>RA</span></a>
+      <a href="#" class="nav-logo"><img src="rudra-logo.png" alt="Rudra trishul" />RUD<span>RA</span></a>
       <div class="nav-links">
         <a href="#mission">Mission</a>
         <a href="#warriors">Warriors</a>
