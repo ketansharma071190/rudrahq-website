@@ -108,6 +108,11 @@
       font-size: 22px; font-weight: 900;
       color: var(--white); white-space: nowrap;
     }
+    .nav-logo img {
+      width: 36px; height: 36px;
+      mix-blend-mode: screen;
+      filter: brightness(1.1);
+    }
     .nav-logo .wm { letter-spacing: 0.12em; }
     .nav-logo .wm em { color: var(--gold); font-style: normal; }
     .nav-links { display: flex; gap: 40px; align-items: center; }
@@ -765,7 +770,10 @@
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="#" class="nav-logo"><span class="wm">RUD<em>RA</em></span></a>
+      <a href="#" class="nav-logo">
+        <img src="rudra-logo.png" alt="Rudra trishul emblem" />
+        <span class="wm">RUD<em>RA</em></span>
+      </a>
       <div class="nav-links">
         <a href="#mission">Mission</a>
         <a href="#warriors">Warriors</a>
