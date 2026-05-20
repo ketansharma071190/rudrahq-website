@@ -3,19 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUDRA — Warriors of Dharma</title>
+  <title>RUDRA — Warriors of Dharma (Light)</title>
   <meta name="description" content="India's first humanoid warrior universe. Not a toy. A universe." />
-  <meta name="theme-color" content="#080604" />
-  <meta property="og:title" content="RUDRA — Warriors of Dharma" />
-  <meta property="og:description" content="Arjuna and Bhim. The warriors of Kurukshetra fight again — in steel." />
-  <meta property="og:image" content="https://rudrahq.com/assets/arjuna-cinematic.png" />
-  <meta property="og:url" content="https://rudrahq.com" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#f2e5c8" />
 
-  <!-- Favicon: Rudra trishul logo -->
   <link rel="icon" type="image/png" href="rudra-logo.png" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
@@ -24,24 +16,26 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Warm dark — not cold navy */
-      --bg:       #080604;
-      --bg2:      #0e0b08;
-      --card:     #131009;
-      --border:   #221e14;
-      /* Fire gold — warmer than amber */
-      --gold:     #c8920a;
-      --gold-lt:  #e0a818;
-      --gold-dim: #7a5608;
-      /* Warrior accents */
+      /* HFW — warm earth, ancient parchment */
+      --bg:       #f2e5c8;
+      --bg2:      #ece0b4;
+      --card:     #f8f0dc;
+      --border:   #d4ba80;
+      /* Rust gold — deeper for legibility on light */
+      --gold:     #8a6200;
+      --gold-lt:  #aa7a00;
+      --gold-dim: #c8a840;
+      /* Warrior accents (deepened for light bg) */
       --blue:     #1a3a7a;
-      --blue-lt:  #3a6acf;
+      --blue-lt:  #1a50aa;
       --green:    #1a4a14;
-      --green-lt: #3a8a2c;
+      --green-lt: #1a6a1a;
       --crimson:  #7a0a0a;
-      /* Typography */
-      --white:    #f0ece2;
-      --muted:    #7a7060;
+      /* Typography — dark warm brown */
+      --white:    #1a1209;
+      --muted:    #7a6040;
+      /* Overlay color used in hero fade */
+      --hero-fade: #f2e5c8;
     }
 
     html { scroll-behavior: smooth; }
@@ -59,12 +53,12 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* Subtle noise — makes it feel handcrafted not flat */
+    /* Warm paper grain texture */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
-      opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.55;
     }
 
     .container { max-width: 1160px; margin: 0 auto; padding: 0 40px; position: relative; }
@@ -97,7 +91,7 @@
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(8, 6, 4, 0.96);
+      background: rgba(242, 229, 200, 0.97);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       padding: 14px 0;
@@ -112,10 +106,11 @@
       font-size: 22px; font-weight: 900;
       color: var(--white); white-space: nowrap;
     }
+    /* On light bg: multiply blend keeps gold, blacks read on parchment */
     .nav-logo img {
       width: 36px; height: 36px;
-      mix-blend-mode: screen;
-      filter: brightness(1.1);
+      mix-blend-mode: multiply;
+      filter: sepia(0.6) saturate(1.4) brightness(0.65);
     }
     .nav-logo .wm { letter-spacing: 0.12em; }
     .nav-logo .wm em { color: var(--gold); font-style: normal; }
@@ -135,14 +130,13 @@
     }
     .nav-cta:hover { background: var(--gold-lt) !important; }
 
-    /* ── HERO ────────────────────────────────── */
+    /* ── HERO — stays cinematic, fades to parchment ─── */
     #hero {
       position: relative;
       min-height: 100vh;
       display: flex; align-items: flex-end;
       overflow: hidden;
     }
-
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
       background-image: url('assets/arjuna-cinematic.png');
@@ -150,67 +144,66 @@
       background-position: center 15%;
       will-change: transform;
     }
+    /* Fades to parchment at bottom for seamless handoff to light sections */
     .hero-bg::after {
       content: '';
       position: absolute; inset: 0;
       background:
         linear-gradient(to bottom,
-          rgba(8,6,4,0.3)  0%,
-          rgba(8,6,4,0.0)  20%,
-          rgba(8,6,4,0.0)  45%,
-          rgba(8,6,4,0.75) 72%,
-          rgba(8,6,4,1)    100%
+          rgba(242,229,200,0.1)  0%,
+          rgba(26,18,9,0.0)      15%,
+          rgba(26,18,9,0.0)      40%,
+          rgba(26,18,9,0.65)     65%,
+          rgba(242,229,200,0.85) 88%,
+          rgba(242,229,200,1)    100%
         ),
         linear-gradient(to right,
-          rgba(8,6,4,0.55) 0%,
-          rgba(8,6,4,0.1)  50%,
-          rgba(8,6,4,0)    100%
+          rgba(26,18,9,0.5) 0%,
+          rgba(26,18,9,0.1) 50%,
+          rgba(26,18,9,0)   100%
         );
     }
-
     .hero-content {
       position: relative; z-index: 2;
       width: 100%;
       padding-bottom: 10vh;
     }
-
     .hero-eyebrow {
       font-size: 11px; font-weight: 700;
       letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-dim);
       margin-bottom: 20px;
       display: flex; align-items: center; gap: 14px;
     }
     .hero-eyebrow::before {
-      content: ''; width: 36px; height: 1px; background: var(--gold); flex-shrink: 0;
+      content: ''; width: 36px; height: 1px; background: var(--gold-dim); flex-shrink: 0;
     }
-
     .hero-h1 {
       font-family: 'Cinzel', serif;
       font-size: clamp(44px, 8.5vw, 96px);
       font-weight: 900; line-height: 0.93;
       letter-spacing: 0.01em;
       margin-bottom: 12px;
+      /* Text on dark part of hero — stays white */
+      color: #f0ece2;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.4);
     }
-    .hero-h1 .gold { color: var(--gold); }
-
+    .hero-h1 .gold { color: var(--gold-dim); }
     .hero-sub {
       font-family: 'Cinzel', serif;
       font-size: clamp(14px, 1.6vw, 18px);
       font-weight: 400; letter-spacing: 0.08em;
-      color: var(--muted);
+      color: rgba(240,236,226,0.7);
       margin-bottom: 28px; line-height: 1.5;
     }
-
     .hero-tagline {
       display: inline-flex; align-items: center; gap: 12px;
       font-size: 12px; font-weight: 600;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(122, 112, 96, 0.7);
+      color: rgba(200, 168, 64, 0.75);
       margin-bottom: 44px;
     }
-    .hero-tagline .x { color: var(--gold); font-size: 14px; }
-
+    .hero-tagline .x { color: var(--gold-dim); font-size: 14px; }
     .hero-actions { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
     .btn-primary {
       font-family: 'Rajdhani', sans-serif;
@@ -226,17 +219,17 @@
       font-family: 'Rajdhani', sans-serif;
       font-size: 12px; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted); display: inline-flex; align-items: center; gap: 8px;
+      color: rgba(240,236,226,0.65);
+      display: inline-flex; align-items: center; gap: 8px;
       transition: color 0.2s;
     }
-    .btn-ghost:hover { color: var(--white); }
-
+    .btn-ghost:hover { color: #f0ece2; }
     .hero-scroll {
       position: absolute; bottom: 40px; left: 50%;
       transform: translateX(-50%); z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 8px;
       font-size: 9px; font-weight: 600; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--muted);
+      text-transform: uppercase; color: var(--gold-dim);
     }
     .scroll-line {
       width: 1px; height: 44px;
@@ -275,11 +268,11 @@
     }
     .mission-body {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 18px; font-weight: 300;
-      color: #b8b0a0; line-height: 1.8;
+      font-size: 18px; font-weight: 400;
+      color: #5a4a30; line-height: 1.8;
       margin-bottom: 24px;
     }
-    .mission-body strong { color: var(--white); font-weight: 600; }
+    .mission-body strong { color: var(--white); font-weight: 700; }
     .stat-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 2px; margin-top: 48px;
@@ -311,7 +304,7 @@
       position: absolute; left: 18px; top: 16px;
       font-family: 'Cinzel', serif;
       font-size: 80px; line-height: 1;
-      color: var(--gold-dim); pointer-events: none;
+      color: var(--gold-dim); pointer-events: none; opacity: 0.4;
     }
     .founder-quote p {
       font-family: 'Cinzel', serif;
@@ -328,10 +321,9 @@
     }
 
     /* ── WARRIORS ────────────────────────────── */
-    #warriors { padding: 100px 0; }
+    #warriors { padding: 100px 0; background: var(--bg2); }
     .warriors-header { text-align: center; margin-bottom: 64px; }
     .warriors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
-
     .warrior-card {
       position: relative;
       background: var(--card);
@@ -339,35 +331,27 @@
       overflow: hidden;
       transition: border-color 0.3s;
     }
-    .warrior-card:hover { border-color: var(--gold-dim); }
-
-    /* Colour top bar */
+    .warrior-card:hover { border-color: var(--gold); }
     .warrior-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     }
     .warrior-card.arjuna::before { background: linear-gradient(90deg, var(--blue-lt), var(--gold)); }
     .warrior-card.bhim::before   { background: linear-gradient(90deg, var(--green-lt), var(--gold)); }
-
-    /* Inner glow */
     .warrior-glow {
       position: absolute; top: 0; right: 0;
       width: 55%; height: 55%;
-      pointer-events: none; z-index: 0; opacity: 0.12;
+      pointer-events: none; z-index: 0; opacity: 0.08;
     }
     .warrior-card.arjuna .warrior-glow { background: radial-gradient(circle at top right, var(--blue-lt), transparent); }
     .warrior-card.bhim   .warrior-glow { background: radial-gradient(circle at top right, var(--green-lt), transparent); }
-
-    /* Photo panel */
     .warrior-photo {
       width: 100%; height: 280px;
       object-fit: cover; object-position: center top;
-      opacity: 0.88;
+      opacity: 0.9;
       transition: opacity 0.4s;
     }
-    .warrior-card:hover .warrior-photo { opacity: 0.95; }
-
+    .warrior-card:hover .warrior-photo { opacity: 1; }
     .warrior-inner { position: relative; z-index: 1; padding: 36px 40px 44px; }
-
     .warrior-num {
       font-family: 'Cinzel', serif;
       font-size: 72px; font-weight: 900; line-height: 1;
@@ -382,7 +366,6 @@
     }
     .warrior-card.arjuna .warrior-faction { color: var(--blue-lt); }
     .warrior-card.bhim   .warrior-faction { color: var(--green-lt); }
-
     .warrior-name {
       font-family: 'Cinzel', serif;
       font-size: clamp(32px, 3.5vw, 48px);
@@ -400,16 +383,13 @@
       letter-spacing: 0.2em; text-transform: uppercase;
       padding: 5px 14px; margin-bottom: 24px; border: 1px solid;
     }
-    .warrior-card.arjuna .warrior-role { color: var(--blue-lt); border-color: var(--blue); }
-    .warrior-card.bhim   .warrior-role { color: var(--green-lt); border-color: var(--green); }
-
+    .warrior-card.arjuna .warrior-role { color: var(--blue-lt); border-color: var(--blue-lt); }
+    .warrior-card.bhim   .warrior-role { color: var(--green-lt); border-color: var(--green-lt); }
     .warrior-lore {
-      font-size: 15px; font-weight: 300;
-      color: #a0998e; line-height: 1.7;
+      font-size: 15px; font-weight: 400;
+      color: #5a4a30; line-height: 1.7;
       margin-bottom: 28px;
     }
-
-    /* Stat bars */
     .warrior-stats { display: flex; flex-direction: column; gap: 12px; }
     .srow { display: flex; flex-direction: column; gap: 5px; }
     .srow-label {
@@ -426,7 +406,6 @@
     }
     .warrior-card.arjuna .srow-fill { background: var(--blue-lt); }
     .warrior-card.bhim   .srow-fill { background: var(--green-lt); }
-
     .warrior-sig {
       margin-top: 32px; padding-top: 24px;
       border-top: 1px solid var(--border);
@@ -441,28 +420,21 @@
       font-size: 17px; font-weight: 700;
       color: var(--gold); letter-spacing: 0.05em; margin-bottom: 4px;
     }
-    .sig-desc {
-      font-size: 13px; font-weight: 300; color: var(--muted);
-    }
+    .sig-desc { font-size: 13px; font-weight: 400; color: var(--muted); }
 
     /* ── UNIVERSE ────────────────────────────── */
-    #universe { padding: 100px 0; background: var(--bg2); }
+    #universe { padding: 100px 0; background: var(--bg); }
     .universe-inner {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: start;
     }
-
-    /* Warrior roster chips */
     .series-block { margin-top: 40px; }
     .series-hd {
       font-size: 10px; font-weight: 700;
       letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 14px;
     }
-    .chips {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-bottom: 28px;
-    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
     .chip {
       font-size: 12px; font-weight: 600;
       letter-spacing: 0.08em;
@@ -472,10 +444,8 @@
       transition: border-color 0.2s, color 0.2s;
       cursor: default;
     }
-    .chip:hover { border-color: var(--gold-dim); color: var(--white); }
+    .chip:hover { border-color: var(--gold); color: var(--white); }
     .chip.live { border-color: var(--gold-dim); color: var(--gold); }
-
-    /* Product phases */
     .phases { display: flex; flex-direction: column; gap: 3px; }
     .phase {
       display: flex; gap: 24px;
@@ -484,13 +454,12 @@
       transition: border-color 0.2s;
     }
     .phase:hover { border-color: var(--gold-dim); }
-    .phase.active { border-color: var(--gold-dim); }
+    .phase.active { border-color: var(--gold); }
     .phase-num {
       font-family: 'Cinzel', serif;
       font-size: 26px; font-weight: 900;
       color: var(--gold-dim); line-height: 1;
       flex-shrink: 0; width: 34px;
-      transition: color 0.2s;
     }
     .phase.active .phase-num { color: var(--gold); }
     .phase-title {
@@ -498,18 +467,17 @@
       font-size: 15px; font-weight: 700;
       letter-spacing: 0.03em; color: var(--white);
       margin-bottom: 6px;
-      transition: color 0.2s;
     }
     .phase.active .phase-title { color: var(--gold); }
     .phase-desc {
-      font-size: 13px; font-weight: 300;
+      font-size: 13px; font-weight: 400;
       color: var(--muted); line-height: 1.55;
     }
 
     /* ── JOIN ────────────────────────────────── */
     #join {
       padding: 120px 0;
-      background: var(--bg);
+      background: var(--bg2);
       position: relative; overflow: hidden;
     }
     #join::before {
@@ -517,7 +485,7 @@
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(200,146,10,0.06) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(138,98,0,0.08) 0%, transparent 65%);
       pointer-events: none;
     }
     .join-inner {
@@ -532,14 +500,11 @@
     }
     .join-title span { color: var(--gold); }
     .join-sub {
-      font-size: 16px; font-weight: 300;
+      font-size: 16px; font-weight: 400;
       color: var(--muted); line-height: 1.65;
       margin-bottom: 48px;
     }
-    .email-form {
-      display: flex; max-width: 520px;
-      margin: 0 auto 16px;
-    }
+    .email-form { display: flex; max-width: 520px; margin: 0 auto 16px; }
     .email-input {
       flex: 1;
       background: var(--card);
@@ -550,9 +515,9 @@
       transition: border-color 0.2s;
     }
     .email-input::placeholder { color: var(--muted); }
-    .email-input:focus { border-color: var(--gold-dim); }
+    .email-input:focus { border-color: var(--gold); }
     .email-btn {
-      background: var(--gold); color: var(--bg);
+      background: var(--gold); color: var(--card);
       border: none; font-family: 'Rajdhani', sans-serif;
       font-size: 11px; font-weight: 700;
       letter-spacing: 0.18em; text-transform: uppercase;
@@ -560,9 +525,7 @@
       transition: background 0.2s;
     }
     .email-btn:hover { background: var(--gold-lt); }
-    .email-note {
-      font-size: 11px; color: var(--muted); letter-spacing: 0.06em;
-    }
+    .email-note { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
     .form-success {
       display: none;
       font-family: 'Cinzel', serif;
@@ -573,7 +536,7 @@
     /* ── FOOTER ──────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
-      background: var(--bg2);
+      background: #e8d8a8;
       padding: 48px 0 36px;
     }
     .footer-inner {
@@ -586,9 +549,7 @@
       letter-spacing: 0.18em; margin-bottom: 6px;
     }
     .footer-logo span { color: var(--gold); }
-    .footer-tagline {
-      font-size: 11px; color: var(--muted); letter-spacing: 0.1em;
-    }
+    .footer-tagline { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
     .footer-links { display: flex; gap: 28px; }
     .footer-links a {
       font-size: 11px; font-weight: 600;
@@ -1025,13 +986,11 @@
 
 
 <script>
-  // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Hero parallax
   const heroBg = document.getElementById('heroBg');
   window.addEventListener('scroll', () => {
     if (window.scrollY < window.innerHeight) {
@@ -1039,14 +998,12 @@
     }
   }, { passive: true });
 
-  // Scroll reveal + stat bars animate on entry
   const reveals = document.querySelectorAll('.reveal');
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
         setTimeout(() => {
           e.target.classList.add('visible');
-          // Animate stat bars in this card
           e.target.querySelectorAll('.srow-fill').forEach(bar => {
             bar.style.width = bar.dataset.w + '%';
           });
@@ -1057,12 +1014,8 @@
   }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => revealObs.observe(el));
 
-  // All stat bars start at 0
-  document.querySelectorAll('.srow-fill').forEach(bar => {
-    bar.style.width = '0%';
-  });
+  document.querySelectorAll('.srow-fill').forEach(bar => { bar.style.width = '0%'; });
 
-  // Form — Web3Forms async
   const form    = document.getElementById('joinForm');
   const success = document.getElementById('formSuccess');
   form.addEventListener('submit', async e => {
