@@ -3,31 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUDRA</title>
-  <meta name="description" content="India's first humanoid combat robot universe." />
+  <title>RUDRA — Warriors of Dharma</title>
+  <meta name="description" content="India's first humanoid warrior universe. Born from dharma. Built to fight." />
+  <meta name="theme-color" content="#040b18" />
 
-  <!-- Favicon: Trishul -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 80'%3E%3Crect width='44' height='80' fill='%23030912'/%3E%3Cpath d='M22,46 L10,10' stroke='%23f59e0b' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M22,46 L22,4' stroke='%23f59e0b' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M22,46 L34,10' stroke='%23f59e0b' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M22,46 L22,76' stroke='%23f59e0b' stroke-width='2.5' stroke-linecap='round'/%3E%3Cline x1='16' y1='46' x2='28' y2='46' stroke='%23f59e0b' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='6' y1='10' x2='14' y2='10' stroke='%23f59e0b' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='18' y1='4' x2='26' y2='4' stroke='%23f59e0b' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='30' y1='10' x2='38' y2='10' stroke='%23f59e0b' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="RUDRA — Warriors of Dharma" />
+  <meta property="og:description" content="India's first humanoid warrior universe. Arjuna and Bhim have returned — in steel." />
+  <meta property="og:image" content="https://rudrahq.com/assets/arjuna-cinematic.png" />
+  <meta property="og:url" content="https://rudrahq.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon: refined trishul -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 80'%3E%3Crect width='44' height='80' fill='%23040b18'/%3E%3Cpath d='M22 3 C25 11,26 22,24 34 L20 34 C18 22,19 11,22 3 Z' fill='%23d4a017'/%3E%3Cpath d='M20 34 C16 28,9 22,5 15 L8 13 C12 19,18 26,22 34 Z' fill='%23d4a017'/%3E%3Cpath d='M24 34 C28 28,35 22,39 15 L36 13 C32 19,26 26,22 34 Z' fill='%23d4a017'/%3E%3Crect x='12' y='34' width='20' height='2.5' fill='%23d4a017' rx='1'/%3E%3Crect x='20.5' y='37' width='3' height='39' fill='%23d4a017' rx='1.5'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #030912;
-      --amber:   #f59e0b;
-      --amber-d: #92400e;
-      --teal:    #0d9488;
-      --blue:    #3b82f6;
-      --blue-d:  #1d4ed8;
-      --green:   #16a34a;
-      --green-d: #14532d;
-      --crimson: #dc2626;
-      --white:   #faf8f4;
-      --muted:   #64748b;
+      --bg:     #040b18;
+      --bg2:    #060e1f;
+      --gold:   #d4a017;
+      --goldb:  #f0b429;
+      --goldd:  #7a5c0e;
+      --white:  #f5f0e8;
+      --muted:  #4a5568;
+      --blue:   #2563eb;
+      --green:  #16a34a;
     }
 
     html { scroll-behavior: smooth; }
@@ -37,586 +44,657 @@
       color: var(--white);
       font-family: 'Rajdhani', sans-serif;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── TRISHUL MARK SVG (inline, reusable) ─────────────────── */
-    .trishul {
+    /* ── TRISHUL INLINE SVG ───────────────────────── */
+    .trishul-mark {
       display: inline-block;
-      line-height: 0;
+      flex-shrink: 0;
     }
-    .trishul svg { display: block; }
 
-    /* ── NAV ─────────────────────────────────────────────────── */
+    /* ── NAV ────────────────────────────────────── */
     nav {
-      position: fixed; top: 0; width: 100%; z-index: 200;
-      padding: 22px 56px;
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 1.75rem 4vw;
       display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.4s;
+      transition: background 0.5s, padding 0.4s, border-color 0.5s;
+      border-bottom: 1px solid transparent;
     }
     nav.solid {
-      background: rgba(3,9,18,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(245,158,11,0.12);
+      background: rgba(4, 11, 24, 0.93);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1rem 4vw;
+      border-bottom-color: rgba(212, 160, 23, 0.12);
     }
     .nav-brand {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 0.75rem;
       text-decoration: none;
     }
     .nav-wordmark {
       font-family: 'Cinzel', serif;
-      font-size: 1.35rem; font-weight: 900;
-      letter-spacing: 0.35em;
-      color: var(--white);
+      font-size: 1.2rem; font-weight: 900;
+      letter-spacing: 0.3em; color: var(--white);
     }
-    .nav-links { display: flex; gap: 44px; list-style: none; }
-    .nav-links a {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none;
-      transition: color 0.25s;
+    .nav-right {
+      display: flex; align-items: center; gap: 2.5rem;
+      list-style: none;
     }
-    .nav-links a:hover { color: var(--amber); }
+    .nav-right a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-right a:hover { color: var(--gold); }
     .nav-cta {
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--bg); background: var(--amber);
-      padding: 10px 26px; text-decoration: none;
-      clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
-      transition: background 0.2s;
+      color: var(--gold) !important;
+      border: 1px solid rgba(212, 160, 23, 0.35);
+      padding: 0.5rem 1.2rem !important;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s !important;
     }
-    .nav-cta:hover { background: #fbbf24; }
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--bg) !important;
+    }
 
-    /* ── HERO ────────────────────────────────────────────────── */
+    /* ── HERO ──────────────────────────────────── */
     #hero {
       position: relative;
-      height: 100vh; min-height: 640px;
-      display: grid;
-      grid-template-columns: 55% 45%;
+      height: 100vh; min-height: 620px;
       overflow: hidden;
+      display: flex; align-items: flex-end;
     }
 
-    /* Left: text */
-    .hero-left {
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('assets/arjuna-cinematic.png');
+      background-size: cover;
+      background-position: center 15%;
+      will-change: transform;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(4,11,24,0.25) 0%,
+          rgba(4,11,24,0.05) 25%,
+          rgba(4,11,24,0.05) 45%,
+          rgba(4,11,24,0.7)  72%,
+          rgba(4,11,24,1)    100%
+        ),
+        linear-gradient(to right,
+          rgba(4,11,24,0.5) 0%,
+          rgba(4,11,24,0.1) 50%,
+          rgba(4,11,24,0)   100%
+        );
+    }
+
+    .hero-content {
       position: relative; z-index: 2;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 64px 80px;
-      background: linear-gradient(
-        105deg,
-        rgba(3,9,18,1)    0%,
-        rgba(3,9,18,0.96) 55%,
-        rgba(3,9,18,0.6)  80%,
-        transparent       100%
-      );
+      width: 100%;
+      padding: 0 6vw 9vh;
     }
     .hero-eyebrow {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 24px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
     }
     .hero-eyebrow::before {
-      content: ''; width: 28px; height: 1px; background: var(--amber);
-    }
-    .hero-eyebrow span {
-      font-size: 0.66rem; font-weight: 600;
-      letter-spacing: 0.32em; text-transform: uppercase;
-      color: var(--amber);
+      content: ''; width: 32px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
     }
     .hero-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(3.4rem, 5.5vw, 5.8rem);
-      font-weight: 900; line-height: 0.95;
-      letter-spacing: -0.01em;
-      margin-bottom: 28px;
-    }
-    .hero-title em {
-      font-style: normal;
-      color: var(--amber);
+      font-size: clamp(3.5rem, 9.5vw, 10.5rem);
+      font-weight: 900; line-height: 0.9;
+      letter-spacing: -0.015em;
+      margin-bottom: 2.5rem;
+      max-width: 13ch;
     }
     .hero-sub {
-      font-size: 1rem; font-weight: 400;
-      color: rgba(250,248,244,0.55);
-      letter-spacing: 0.05em;
-      margin-bottom: 44px;
-      max-width: 360px;
-      line-height: 1.7;
+      font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(245, 240, 232, 0.55);
+      line-height: 1.75;
+      max-width: 46ch;
+      margin-bottom: 3rem;
+      letter-spacing: 0.03em;
     }
-    .hero-actions { display: flex; gap: 20px; align-items: center; }
-    .btn {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 15px 34px; text-decoration: none;
-      display: inline-block; transition: all 0.2s;
+    .hero-actions {
+      display: flex; align-items: center; gap: 1.75rem;
+      flex-wrap: wrap;
     }
     .btn-fill {
-      color: var(--bg); background: var(--amber);
-      clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 700;
+      background: var(--gold); color: var(--bg);
+      padding: 0.9rem 2.25rem;
+      text-decoration: none; border: none;
+      border-radius: 2px; cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
     }
-    .btn-fill:hover { background: #fbbf24; transform: translateY(-2px); }
-    .btn-line {
-      color: rgba(250,248,244,0.7);
-      border: 1px solid rgba(250,248,244,0.2);
-      transition: color 0.2s, border-color 0.2s;
+    .btn-fill:hover { background: var(--goldb); transform: translateY(-1px); }
+    .btn-ghost {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.6);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
     }
-    .btn-line:hover { color: var(--amber); border-color: var(--amber); }
+    .btn-ghost:hover { color: var(--white); }
 
-    /* Right: image */
-    .hero-right {
-      position: relative;
-      overflow: hidden;
+    .scroll-hint {
+      position: absolute;
+      right: 5vw; bottom: 3rem;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.6rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem; letter-spacing: 0.25em;
+      color: rgba(245,240,232,0.25);
+      text-transform: uppercase;
     }
-    .hero-right::before {
-      content: ''; position: absolute; inset: 0; z-index: 1;
-      background:
-        linear-gradient(270deg, rgba(3,9,18,0.3) 0%, transparent 40%),
-        linear-gradient(0deg, rgba(3,9,18,0.6) 0%, transparent 35%);
+    .scroll-bar {
+      width: 1px; height: 56px;
+      background: linear-gradient(to bottom, transparent, rgba(212,160,23,0.5));
+      animation: pulse 2.2s ease-in-out infinite;
     }
-    .hero-img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-    }
-    /* Subtle ambient glow behind image */
-    .hero-right::after {
-      content: ''; position: absolute;
-      top: 20%; left: -20%;
-      width: 80%; height: 60%;
-      background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
-      z-index: 0; pointer-events: none;
+    @keyframes pulse {
+      0%,100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
 
-    /* ── STATEMENT BAR ───────────────────────────────────────── */
-    .statement {
-      padding: 52px 56px;
-      background: linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(13,148,136,0.04) 100%);
-      border-top: 1px solid rgba(245,158,11,0.15);
-      border-bottom: 1px solid rgba(245,158,11,0.15);
-      text-align: center;
+    /* ── MANIFESTO ────────────────────────────── */
+    #manifesto {
+      padding: 14vh 6vw 13vh;
+      border-top: 1px solid rgba(212,160,23,0.08);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 8vw;
+      align-items: start;
     }
-    .statement p {
+    .manifesto-index {
+      padding-top: 0.3rem;
+    }
+    .manifesto-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.32em;
+      color: var(--goldd); margin-bottom: 1.25rem;
+      display: block;
+    }
+    .gold-bar {
+      width: 36px; height: 2px;
+      background: var(--gold);
+      display: block;
+    }
+    .manifesto-body {
+      max-width: 800px;
+    }
+    .manifesto-quote {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      color: rgba(250,248,244,0.75);
+      font-size: clamp(1.7rem, 3.5vw, 3.8rem);
+      font-weight: 400; line-height: 1.3;
+      color: var(--white);
+      margin-bottom: 3rem;
     }
-    .statement p em {
-      font-style: normal;
-      color: var(--amber);
+    .manifesto-text {
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      font-weight: 300;
+      color: rgba(245, 240, 232, 0.45);
+      line-height: 1.9;
+      max-width: 58ch;
     }
 
-    /* ── WARRIORS ────────────────────────────────────────────── */
+    /* ── WARRIORS ─────────────────────────────── */
     #warriors {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      height: 100vh; min-height: 600px;
     }
     .warrior-panel {
       position: relative;
+      height: 92vh; min-height: 550px;
       overflow: hidden;
       cursor: pointer;
     }
     .warrior-panel img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center top;
-      transition: transform 6s ease;
-      transform: scale(1.03);
+      transition: transform 7s ease;
+      transform: scale(1.04);
     }
     .warrior-panel:hover img { transform: scale(1.0); }
 
     .warrior-panel.arjuna::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
       background:
-        linear-gradient(0deg, rgba(3,9,18,0.95) 0%, rgba(3,9,18,0.5) 35%, rgba(29,78,216,0.12) 70%, transparent 100%),
-        linear-gradient(90deg, rgba(3,9,18,0.6) 0%, transparent 60%);
+        linear-gradient(0deg,  rgba(4,11,24,0.97) 0%, rgba(4,11,24,0.6) 35%, rgba(18,51,144,0.1) 70%, transparent 100%),
+        linear-gradient(90deg, rgba(4,11,24,0.45) 0%, transparent 55%);
     }
     .warrior-panel.bhim::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
       background:
-        linear-gradient(0deg, rgba(3,9,18,0.95) 0%, rgba(3,9,18,0.5) 35%, rgba(20,83,45,0.15) 70%, transparent 100%),
-        linear-gradient(270deg, rgba(3,9,18,0.6) 0%, transparent 60%);
+        linear-gradient(0deg,  rgba(4,11,24,0.97) 0%, rgba(4,11,24,0.6) 35%, rgba(14,60,30,0.12) 70%, transparent 100%),
+        linear-gradient(270deg, rgba(4,11,24,0.45) 0%, transparent 55%);
     }
-    /* Divider line between warriors */
+    /* divider */
     .warrior-panel.arjuna::after {
-      content: ''; position: absolute; top: 0; right: 0; bottom: 0;
-      width: 1px; background: linear-gradient(180deg, transparent, rgba(245,158,11,0.3), transparent);
+      content: ''; position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent 0%, rgba(212,160,23,0.25) 50%, transparent 100%);
       z-index: 3;
     }
+    /* colour accent stripe top */
+    .warrior-stripe {
+      position: absolute; top: 0; left: 0;
+      height: 3px; width: 100%; z-index: 4;
+    }
+    .arjuna .warrior-stripe { background: linear-gradient(90deg, var(--blue), transparent); }
+    .bhim   .warrior-stripe { background: linear-gradient(90deg, var(--green), transparent); }
 
     .warrior-info {
       position: absolute; bottom: 0; left: 0; right: 0;
-      z-index: 2; padding: 48px;
+      z-index: 2; padding: 4rem 3.5rem 3rem;
     }
     .warrior-panel.bhim .warrior-info { text-align: right; }
 
-    .warrior-class {
-      font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.4em; text-transform: uppercase;
-      margin-bottom: 10px; display: block;
+    .warrior-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.38em;
+      text-transform: uppercase; margin-bottom: 0.75rem;
+      display: block;
     }
-    .warrior-panel.arjuna .warrior-class { color: var(--blue); }
-    .warrior-panel.bhim .warrior-class   { color: var(--green); }
+    .arjuna .warrior-badge { color: rgba(37, 99, 235, 0.8); }
+    .bhim   .warrior-badge { color: rgba(22, 163, 74, 0.8); }
 
     .warrior-name {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 900; line-height: 1;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 900; line-height: 1; letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
     }
-    .warrior-hindi {
-      font-size: 1.2rem;
-      color: rgba(245,158,11,0.5);
-      letter-spacing: 0.1em;
-      margin-bottom: 20px;
+    .warrior-deva {
       display: block;
+      font-size: 1.1rem;
+      color: rgba(212,160,23,0.45);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
     }
+    .warrior-line {
+      font-size: 0.95rem; font-weight: 400;
+      color: rgba(245,240,232,0.5);
+      line-height: 1.6; max-width: 34ch;
+    }
+    .bhim .warrior-line { margin-left: auto; }
 
     .warrior-stats {
-      display: flex; gap: 24px;
+      display: flex; gap: 2rem; margin-top: 1.75rem;
     }
-    .warrior-panel.bhim .warrior-stats { justify-content: flex-end; }
+    .bhim .warrior-stats { justify-content: flex-end; }
+    .wstat { display: flex; flex-direction: column; gap: 2px; }
     .wstat-val {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem; font-weight: 700;
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
     }
     .wstat-key {
-      font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted);
     }
 
-    /* Hover: reveal subtle glow border */
-    .warrior-panel.arjuna:hover::before {
-      background:
-        linear-gradient(0deg, rgba(3,9,18,0.95) 0%, rgba(3,9,18,0.4) 35%, rgba(29,78,216,0.2) 70%, transparent 100%),
-        linear-gradient(90deg, rgba(3,9,18,0.6) 0%, transparent 60%);
+    /* ── NUMBERS ──────────────────────────────── */
+    #numbers {
+      padding: 9vh 0;
+      background: var(--bg2);
+      border-top: 1px solid rgba(212,160,23,0.07);
+      border-bottom: 1px solid rgba(212,160,23,0.07);
     }
-    .warrior-panel.bhim:hover::before {
-      background:
-        linear-gradient(0deg, rgba(3,9,18,0.95) 0%, rgba(3,9,18,0.4) 35%, rgba(20,83,45,0.25) 70%, transparent 100%),
-        linear-gradient(270deg, rgba(3,9,18,0.6) 0%, transparent 60%);
+    .numbers-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
     }
-
-    /* ── UNIVERSE ────────────────────────────────────────────── */
-    #universe {
-      padding: 120px 56px;
-      background: linear-gradient(180deg, var(--bg) 0%, #050e20 50%, var(--bg) 100%);
+    .stat {
+      padding: 4rem 3rem;
+      text-align: center;
+      border-right: 1px solid rgba(212,160,23,0.07);
     }
-    .universe-head {
-      margin-bottom: 64px;
-    }
-    .section-label {
-      font-size: 0.66rem; font-weight: 600;
-      letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--amber); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
-    .universe-title {
+    .stat:last-child { border-right: none; }
+    .stat-val {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      font-weight: 700; line-height: 1.1;
+      font-size: clamp(2.8rem, 4vw, 4.5rem);
+      font-weight: 900; color: var(--gold);
+      line-height: 1; display: block;
+      margin-bottom: 0.75rem;
+    }
+    .stat-unit {
+      font-size: 0.5em; vertical-align: super;
+      font-weight: 400; color: var(--goldd);
+    }
+    .stat-key {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── UNIVERSE ─────────────────────────────── */
+    #universe {
+      padding: 14vh 6vw;
+    }
+    .section-head {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 5rem;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 5.5vw, 6.5rem);
+      font-weight: 900; line-height: 0.92;
+      letter-spacing: -0.01em;
+    }
+    .section-aside {
+      max-width: 32ch; text-align: right;
+      font-size: 0.95rem; font-weight: 300;
+      color: rgba(245,240,232,0.4);
+      line-height: 1.7; padding-bottom: 0.5rem;
     }
     .universe-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1.8fr 1fr 1fr;
+      grid-template-rows: 290px 290px;
       gap: 2px;
     }
     .ucard {
-      padding: 44px 32px;
-      border: 1px solid rgba(250,248,244,0.05);
       position: relative; overflow: hidden;
-      transition: background 0.35s, border-color 0.35s;
-      cursor: default;
+      background: var(--bg2);
     }
-    .ucard::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      opacity: 0; transition: opacity 0.35s;
+    .ucard.tall { grid-row: span 2; }
+    .ucard img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      opacity: 0.75;
+      transition: transform 0.65s ease, opacity 0.4s;
     }
-    .ucard:hover { background: rgba(250,248,244,0.03); }
-    .ucard:hover::before { opacity: 1; }
-
-    .ucard.u1::before { background: linear-gradient(90deg, var(--amber), transparent); }
-    .ucard.u2::before { background: linear-gradient(90deg, var(--blue), transparent); }
-    .ucard.u3::before { background: linear-gradient(90deg, var(--green), transparent); }
-    .ucard.u4::before { background: linear-gradient(90deg, var(--crimson), transparent); }
-
-    .ucard-phase {
-      font-size: 0.6rem; font-weight: 700;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      margin-bottom: 20px; display: block;
+    .ucard:hover img { transform: scale(1.04); opacity: 0.9; }
+    .ucard-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(4,11,24,0.92) 0%, rgba(4,11,24,0.2) 55%, transparent 100%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 2rem;
     }
-    .u1 .ucard-phase { color: var(--amber); }
-    .u2 .ucard-phase { color: var(--blue); }
-    .u3 .ucard-phase { color: var(--green); }
-    .u4 .ucard-phase { color: var(--crimson); }
-
-    .ucard-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+    .ucard-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem; letter-spacing: 0.3em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+      display: block;
+    }
     .ucard-name {
       font-family: 'Cinzel', serif;
-      font-size: 1rem; font-weight: 700;
-      margin-bottom: 8px;
+      font-size: clamp(1.3rem, 2vw, 2rem);
+      font-weight: 700; margin-bottom: 0.4rem;
     }
-    .ucard-warriors {
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.08em; margin-bottom: 14px;
-      color: rgba(250,248,244,0.4);
+    .ucard-desc {
+      font-size: 0.82rem;
+      color: rgba(245,240,232,0.45); line-height: 1.5;
     }
-    .ucard-line {
-      font-size: 0.85rem;
-      color: rgba(250,248,244,0.45);
-      line-height: 1.6;
+    /* placeholder cards (no image) */
+    .ucard.placeholder {
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #060e20, #08121e);
     }
-    .ucard-tag {
-      display: inline-block;
-      margin-top: 18px;
-      font-size: 0.58rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      padding: 4px 10px; border: 1px solid;
+    .ucard.placeholder .ucard-overlay {
+      position: static; background: none;
+      padding: 2.5rem; text-align: center;
+      justify-content: center;
     }
-    .u1 .ucard-tag { color: var(--amber);   border-color: rgba(245,158,11,0.4);  }
-    .u2 .ucard-tag { color: var(--blue);    border-color: rgba(59,130,246,0.4);  }
-    .u3 .ucard-tag { color: var(--green);   border-color: rgba(22,163,74,0.4);   }
-    .u4 .ucard-tag { color: var(--muted);   border-color: rgba(100,116,139,0.3); }
+    .ucard.placeholder .ucard-name { opacity: 0.3; }
+    .ucard.placeholder .ucard-status { margin-bottom: 1rem; opacity: 0.5; }
+    .ucard.placeholder .ucard-desc { font-size: 0.78rem; }
 
-    /* ── JOIN ────────────────────────────────────────────────── */
+    /* ── JOIN ─────────────────────────────────── */
     #join {
-      padding: 140px 56px;
+      padding: 18vh 6vw;
       text-align: center;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(245,158,11,0.06) 0%, transparent 60%),
-        var(--bg);
-      border-top: 1px solid rgba(245,158,11,0.1);
+      position: relative; overflow: hidden;
+      border-top: 1px solid rgba(212,160,23,0.08);
     }
-    .join-trishul {
-      margin: 0 auto 32px;
-      opacity: 0.4;
+    /* Om watermark */
+    #join::before {
+      content: 'ॐ';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 42vw; line-height: 1;
+      color: rgba(212,160,23,0.02);
+      font-family: serif;
+      pointer-events: none; user-select: none;
+    }
+    /* subtle glow */
+    #join::after {
+      content: '';
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 60%; height: 1px;
+      background: radial-gradient(ellipse, rgba(212,160,23,0.3) 0%, transparent 70%);
+    }
+    .join-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 2rem;
+      display: inline-flex; align-items: center; gap: 1rem;
+    }
+    .join-label::before, .join-label::after {
+      content: ''; width: 28px; height: 1px; background: var(--gold);
     }
     .join-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      font-weight: 900; margin-bottom: 16px;
-      line-height: 1.05;
+      font-size: clamp(2.5rem, 7vw, 8rem);
+      font-weight: 900; line-height: 0.93;
+      margin-bottom: 1.5rem; max-width: 14ch;
+      margin-left: auto; margin-right: auto;
     }
     .join-sub {
-      font-size: 0.95rem;
-      color: rgba(250,248,244,0.5);
-      margin-bottom: 48px;
-      letter-spacing: 0.06em;
-    }
-    .email-row {
-      display: flex; max-width: 440px;
-      margin: 0 auto 16px;
-    }
-    .email-input {
-      flex: 1;
-      background: rgba(250,248,244,0.04);
-      border: 1px solid rgba(245,158,11,0.25);
-      border-right: none;
-      padding: 15px 20px;
-      color: var(--white);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .email-input:focus { border-color: var(--amber); }
-    .email-input::placeholder { color: var(--muted); }
-    .email-btn {
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700; font-size: 0.72rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--bg); background: var(--amber);
-      border: none; padding: 15px 28px;
-      cursor: pointer; transition: background 0.2s;
-      white-space: nowrap;
-    }
-    .email-btn:hover { background: #fbbf24; }
-    .join-note {
-      font-size: 0.72rem;
-      color: rgba(100,116,139,0.7);
-      letter-spacing: 0.12em;
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      color: rgba(245,240,232,0.38); line-height: 1.8;
+      max-width: 44ch; margin: 0 auto 3.5rem;
     }
     .join-success {
       display: none;
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--amber);
-      letter-spacing: 0.15em;
-      margin: 0 auto 20px;
+      font-family: 'Cinzel', serif; font-size: 1.1rem;
+      color: var(--gold); letter-spacing: 0.12em;
+      margin-bottom: 1.5rem;
+    }
+    .email-row {
+      display: flex; max-width: 460px;
+      margin: 0 auto 1.25rem;
+      border: 1px solid rgba(212,160,23,0.25);
+      border-radius: 2px; overflow: hidden;
+    }
+    .email-input {
+      flex: 1;
+      background: rgba(245,240,232,0.03);
+      border: none; padding: 1rem 1.4rem;
+      color: var(--white);
+      font-family: 'Rajdhani', sans-serif; font-size: 0.95rem;
+      outline: none;
+    }
+    .email-input:focus { background: rgba(245,240,232,0.05); }
+    .email-input::placeholder { color: rgba(245,240,232,0.25); }
+    .email-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 700;
+      background: var(--gold); color: var(--bg);
+      border: none; padding: 1rem 1.75rem;
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .email-btn:hover { background: var(--goldb); }
+    .join-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.2em;
+      color: rgba(74, 85, 104, 0.6);
     }
 
-    /* ── FOOTER ──────────────────────────────────────────────── */
+    /* ── FOOTER ───────────────────────────────── */
     footer {
-      padding: 48px 56px 32px;
-      border-top: 1px solid rgba(245,158,11,0.1);
-      background: #020810;
-    }
-    .footer-top {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 40px;
+      padding: 3.5rem 6vw 2.5rem;
+      border-top: 1px solid rgba(212,160,23,0.08);
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
     }
     .footer-brand {
-      display: flex; align-items: center; gap: 14px;
+      display: flex; align-items: center; gap: 0.7rem;
     }
-    .footer-wordmark {
+    .footer-word {
       font-family: 'Cinzel', serif;
-      font-size: 1.2rem; font-weight: 900;
-      letter-spacing: 0.35em; color: var(--white);
+      font-size: 1.05rem; font-weight: 900;
+      letter-spacing: 0.25em;
+      color: rgba(245,240,232,0.7);
     }
     .footer-links {
-      display: flex; gap: 36px; list-style: none;
+      display: flex; gap: 2.5rem; list-style: none;
     }
     .footer-links a {
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.22em; text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.57rem; letter-spacing: 0.25em;
       color: var(--muted); text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--amber); }
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      padding-top: 24px;
-      border-top: 1px solid rgba(250,248,244,0.04);
-    }
+    .footer-links a:hover { color: var(--white); }
     .footer-copy {
-      font-size: 0.68rem;
-      color: rgba(100,116,139,0.5);
-      letter-spacing: 0.1em;
-    }
-    .footer-om {
-      font-size: 1rem;
-      color: rgba(245,158,11,0.25);
-      letter-spacing: 0.08em;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem; letter-spacing: 0.15em;
+      color: rgba(74,85,104,0.45);
     }
 
-    /* ── REVEAL ──────────────────────────────────────────────── */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.22s; }
-    .d3 { transition-delay: 0.34s; }
-    .d4 { transition-delay: 0.46s; }
-
-    /* ── RESPONSIVE ──────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      .nav-links { display: none; }
-      #hero { grid-template-columns: 1fr; height: auto; }
-      .hero-left { padding: 120px 28px 56px; background: rgba(3,9,18,0.92); }
-      .hero-right { height: 55vw; }
-      .statement { padding: 36px 28px; }
-      #warriors { grid-template-columns: 1fr; height: auto; }
-      .warrior-panel { height: 65vw; min-height: 300px; }
-      .warrior-panel.bhim .warrior-info { text-align: left; }
-      .warrior-panel.bhim .warrior-stats { justify-content: flex-start; }
-      .warrior-panel.arjuna::after { display: none; }
-      #universe { padding: 80px 24px; }
-      .universe-grid { grid-template-columns: 1fr 1fr; }
-      #join { padding: 80px 24px; }
-      footer { padding: 40px 24px 24px; }
-      .footer-top { flex-direction: column; gap: 28px; text-align: center; }
-      .footer-links { justify-content: center; flex-wrap: wrap; }
-      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    /* ── SCROLL REVEAL ────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
     }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.12s; }
+    .d2 { transition-delay: 0.24s; }
+    .d3 { transition-delay: 0.36s; }
+    .d4 { transition-delay: 0.48s; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ──────────────────────────────────────────────────── -->
 <nav id="nav">
   <a href="#" class="nav-brand">
-    <!-- Trishul mark -->
-    <span class="trishul">
+    <span class="trishul-mark">
       <svg width="20" height="36" viewBox="0 0 44 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22 46L10 10" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M22 46V4"    stroke="#f59e0b" stroke-width="3"   stroke-linecap="round"/>
-        <path d="M22 46L34 10" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M22 46V76"  stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="16" y1="46" x2="28" y2="46" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="6"  y1="10" x2="14" y2="10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="18" y1="4"  x2="26" y2="4"  stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="30" y1="10" x2="38" y2="10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <path d="M22 3 C25 11,26 22,24 34 L20 34 C18 22,19 11,22 3 Z" fill="#d4a017"/>
+        <path d="M20 34 C16 28,9 22,5 15 L8 13 C12 19,18 26,22 34 Z" fill="#d4a017"/>
+        <path d="M24 34 C28 28,35 22,39 15 L36 13 C32 19,26 26,22 34 Z" fill="#d4a017"/>
+        <rect x="12" y="34" width="20" height="2.5" fill="#d4a017" rx="1"/>
+        <rect x="20.5" y="37" width="3" height="39" fill="#d4a017" rx="1.5"/>
       </svg>
     </span>
     <span class="nav-wordmark">RUDRA</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-right">
     <li><a href="#warriors">Warriors</a></li>
     <li><a href="#universe">Universe</a></li>
-    <li><a href="mailto:therudrahq@gmail.com">Investors</a></li>
+    <li><a href="#join" class="nav-cta">Enter the Arena</a></li>
   </ul>
-  <a href="#join" class="nav-cta">Enter the Arena</a>
 </nav>
 
-<!-- HERO -->
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
 <section id="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow"><span>Arjuna League — Season One</span></div>
-    <h1 class="hero-title">
-      THE GODS<br>
-      <em>HAVE</em><br>
-      RETURNED.
-    </h1>
-    <p class="hero-sub">India's first humanoid combat robot universe.</p>
+  <div class="hero-bg" id="heroBg"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">India · Humanoid Robotics · Original IP</p>
+    <h1 class="hero-title">THE GODS HAVE RETURNED.</h1>
+    <p class="hero-sub">Born from dharma. Built to fight. Arjuna and Bhim have come back — not in scripture, but in steel and silicon.</p>
     <div class="hero-actions">
-      <a href="#warriors" class="btn btn-fill">Meet the Warriors</a>
-      <a href="#universe" class="btn btn-line">The Universe</a>
+      <a href="#join" class="btn-fill">Enter the Arena</a>
+      <a href="#warriors" class="btn-ghost">Meet the Warriors &rarr;</a>
     </div>
   </div>
-  <div class="hero-right">
-    <img src="assets/arjuna-cinematic.png" alt="Arjuna" class="hero-img" loading="eager" />
+
+  <div class="scroll-hint">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
-<!-- STATEMENT -->
-<div class="statement">
-  <p>Forged from <em>Sanatana Dharm</em>. Built in Bharat.</p>
-</div>
 
-<!-- WARRIORS -->
+<!-- ── MANIFESTO ────────────────────────────────────────────── -->
+<section id="manifesto">
+  <div class="manifesto-index">
+    <span class="manifesto-num">01 / DHARMA</span>
+    <span class="gold-bar"></span>
+  </div>
+  <div class="manifesto-body">
+    <p class="manifesto-quote reveal">He does not arrive.<br>He already is.</p>
+    <p class="manifesto-text reveal d2">
+      Rudra is not a name for a robot. It is a name for the nature of all things —
+      the force that holds creation and destruction as one. Advait Vedanta does not ask
+      you to worship Shiv. It asks you to recognise him in the world, and the world in him.
+      We did not build warriors. We remembered them.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── WARRIORS ─────────────────────────────────────────────── -->
 <section id="warriors">
 
+  <!-- ARJUNA -->
   <div class="warrior-panel arjuna">
-    <img src="assets/arjuna-standing.png" alt="Arjuna" />
+    <div class="warrior-stripe"></div>
+    <img src="assets/arjuna-standing.png" alt="Arjuna — Warrior of Dharma" loading="lazy" />
     <div class="warrior-info">
-      <span class="warrior-class">Speed Fighter</span>
-      <div class="warrior-name">ARJUNA</div>
-      <span class="warrior-hindi">अर्जुन</span>
+      <span class="warrior-badge">Warrior — 01</span>
+      <h2 class="warrior-name">ARJUNA</h2>
+      <span class="warrior-deva">अर्जुन</span>
+      <p class="warrior-line">The greatest archer who ever lived. Returned as a 17-DOF humanoid combat platform. Precision absolute. Purpose unwavering.</p>
       <div class="warrior-stats">
-        <div>
-          <div class="wstat-val">44 cm</div>
-          <div class="wstat-key">Height</div>
+        <div class="wstat">
+          <span class="wstat-val">17 DOF</span>
+          <span class="wstat-key">Degrees of freedom</span>
         </div>
-        <div>
-          <div class="wstat-val">17 DOF</div>
-          <div class="wstat-key">Joints</div>
-        </div>
-        <div>
-          <div class="wstat-val">2.2 kg</div>
-          <div class="wstat-key">Mass</div>
+        <div class="wstat">
+          <span class="wstat-val">44 CM</span>
+          <span class="wstat-key">Battle height</span>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- BHIM -->
   <div class="warrior-panel bhim">
-    <img src="assets/bhim-prototype.png" alt="Bhim" />
+    <img src="assets/bhim-standing.png" alt="Bhim — Strength of Ages" loading="lazy" />
     <div class="warrior-info">
-      <span class="warrior-class">Power Fighter</span>
-      <div class="warrior-name">BHIM</div>
-      <span class="warrior-hindi">भीम</span>
+      <span class="warrior-badge">Warrior — 02</span>
+      <h2 class="warrior-name">BHIM</h2>
+      <span class="warrior-deva">भीम</span>
+      <p class="warrior-line">He carried a mountain. He broke a dynasty. Now he carries the weight of what comes next — in iron and code.</p>
       <div class="warrior-stats">
-        <div>
-          <div class="wstat-val">44 cm</div>
-          <div class="wstat-key">Height</div>
+        <div class="wstat">
+          <span class="wstat-val">2.2 KG</span>
+          <span class="wstat-key">Combat weight</span>
         </div>
-        <div>
-          <div class="wstat-val">17 DOF</div>
-          <div class="wstat-key">Joints</div>
-        </div>
-        <div>
-          <div class="wstat-val">2.2 kg</div>
-          <div class="wstat-key">Mass</div>
+        <div class="wstat">
+          <span class="wstat-val">32 CH</span>
+          <span class="wstat-key">Servo channels</span>
         </div>
       </div>
     </div>
@@ -624,144 +702,194 @@
 
 </section>
 
-<!-- UNIVERSE -->
+
+<!-- ── NUMBERS ───────────────────────────────────────────────── -->
+<section id="numbers">
+  <div class="numbers-inner">
+    <div class="stat reveal">
+      <span class="stat-val">17</span>
+      <span class="stat-key">Degrees of Freedom</span>
+    </div>
+    <div class="stat reveal d1">
+      <span class="stat-val">44<span class="stat-unit">CM</span></span>
+      <span class="stat-key">Warrior Height</span>
+    </div>
+    <div class="stat reveal d2">
+      <span class="stat-val">2.2<span class="stat-unit">KG</span></span>
+      <span class="stat-key">Combat Weight</span>
+    </div>
+    <div class="stat reveal d3">
+      <span class="stat-val">∞</span>
+      <span class="stat-key">IP Universe Ahead</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── UNIVERSE ──────────────────────────────────────────────── -->
 <section id="universe">
-  <div class="universe-head reveal">
-    <div class="section-label">The Rudra Universe</div>
-    <h2 class="universe-title">One Dharma.<br>Many Forms.</h2>
+  <div class="section-head">
+    <h2 class="section-title reveal">THE<br>UNIVERSE<br>EXPANDS.</h2>
+    <p class="section-aside reveal d2">Every warrior carries a world. Every world carries a hundred more. The Mahabharata had 108 warriors. We are building them all.</p>
   </div>
 
   <div class="universe-grid">
-    <div class="ucard u1 reveal">
-      <span class="ucard-phase">Phase I — Active</span>
-      <span class="ucard-icon">⚔️</span>
-      <div class="ucard-name">Combat</div>
-      <div class="ucard-warriors">Arjuna · Bhim</div>
-      <p class="ucard-line">Live arenas. Puranic warriors in steel bodies.</p>
-      <span class="ucard-tag">Live Now</span>
+
+    <!-- Arjuna cinematic — tall card -->
+    <div class="ucard tall">
+      <img src="assets/arjuna-cinematic.png" alt="Arjuna Cinematic" loading="lazy" />
+      <div class="ucard-overlay">
+        <span class="ucard-status" style="color:#d4a017">Live in the Arena</span>
+        <h3 class="ucard-name">ARJUNA</h3>
+        <p class="ucard-desc">Combat humanoid. Battlefield-ready. The first warrior deployed.</p>
+      </div>
     </div>
-    <div class="ucard u2 reveal d1">
-      <span class="ucard-phase">Phase II</span>
-      <span class="ucard-icon">🏭</span>
-      <div class="ucard-name">Industry</div>
-      <div class="ucard-warriors">Hanuman · Karna</div>
-      <p class="ucard-line">The same intelligence, scaled for work and defence.</p>
-      <span class="ucard-tag">Building</span>
+
+    <!-- Bhim -->
+    <div class="ucard">
+      <img src="assets/bhim-prototype.png" alt="Bhim" loading="lazy" />
+      <div class="ucard-overlay">
+        <span class="ucard-status" style="color:#16a34a">Combat Ready</span>
+        <h3 class="ucard-name">BHIM</h3>
+        <p class="ucard-desc">Strength. Mass. Devastation.</p>
+      </div>
     </div>
-    <div class="ucard u3 reveal d2">
-      <span class="ucard-phase">Phase III</span>
-      <span class="ucard-icon">🙏</span>
-      <div class="ucard-name">Elderly Care</div>
-      <div class="ucard-warriors">Shravan</div>
-      <p class="ucard-line">Named for Shravan Kumar. Some Dharma is quiet.</p>
-      <span class="ucard-tag">Vision</span>
+
+    <!-- Shravan — placeholder -->
+    <div class="ucard placeholder">
+      <div class="ucard-overlay">
+        <span class="ucard-status" style="color:rgba(212,160,23,0.4)">Coming</span>
+        <h3 class="ucard-name">SHRAVAN</h3>
+        <p class="ucard-desc">He served the world without condition. He returns for those the world forgot.</p>
+      </div>
     </div>
-    <div class="ucard u4 reveal d3">
-      <span class="ucard-phase">Phase IV</span>
-      <span class="ucard-icon">🎬</span>
-      <div class="ucard-name">Animation & Lore</div>
-      <div class="ucard-warriors">The Full Pantheon</div>
-      <p class="ucard-line">Not retelling the Puranas. Expanding them.</p>
-      <span class="ucard-tag">Vision</span>
+
+    <!-- Arjuna prototype -->
+    <div class="ucard">
+      <img src="assets/arjuna-prototype.png" alt="Arjuna Prototype" loading="lazy" />
+      <div class="ucard-overlay">
+        <span class="ucard-status" style="color:rgba(59,130,246,0.8)">Prototype</span>
+        <h3 class="ucard-name">ARJUNA II</h3>
+        <p class="ucard-desc">The second iteration. Harder. Faster. More disciplined.</p>
+      </div>
     </div>
+
+    <!-- Universe teaser -->
+    <div class="ucard placeholder">
+      <div class="ucard-overlay">
+        <span class="ucard-status" style="color:rgba(212,160,23,0.3)">The League</span>
+        <h3 class="ucard-name">???</h3>
+        <p class="ucard-desc">The army is still forming. Every warrior has been waiting for this moment.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- JOIN -->
-<section id="join">
-  <div class="join-trishul trishul">
-    <svg width="32" height="58" viewBox="0 0 44 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M22 46L10 10" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M22 46V4"    stroke="#f59e0b" stroke-width="3"   stroke-linecap="round"/>
-      <path d="M22 46L34 10" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M22 46V76"  stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="16" y1="46" x2="28" y2="46" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-      <line x1="6"  y1="10" x2="14" y2="10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-      <line x1="18" y1="4"  x2="26" y2="4"  stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-      <line x1="30" y1="10" x2="38" y2="10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </div>
-  <h2 class="join-title reveal">Enter the Arena.</h2>
-  <p class="join-sub reveal d1">First to know. First to fight.</p>
 
-  <div class="join-success" id="joinSuccess">
-    ✦ &nbsp;You're in the league.
-  </div>
-  <form class="email-row reveal d2" id="joinForm"
-        action="https://formspree.io/f/REPLACE_ME"
+<!-- ── JOIN ──────────────────────────────────────────────────── -->
+<section id="join">
+  <span class="join-label">Enter the Arena</span>
+  <h2 class="join-title display reveal">Fight for What Matters.</h2>
+  <p class="join-sub reveal d1">You do not wait for the gods to arrive. You recognise them. Join the league — investors, warriors, and believers welcome.</p>
+
+  <div class="join-success" id="joinSuccess">✦ &nbsp;You are in the league.</div>
+
+  <form class="email-row" id="joinForm"
+        action="https://api.web3forms.com/submit"
         method="POST">
-    <input type="hidden" name="_subject" value="Rudra — New League Member" />
-    <input type="email"  name="email" class="email-input" placeholder="Your email" required autocomplete="email" />
+    <input type="hidden" name="access_key"  value="cc303944-7bb9-472c-9a1a-a80dac4d1c71" />
+    <input type="hidden" name="subject"     value="Rudra — New League Member" />
+    <input type="hidden" name="from_name"   value="Rudra HQ" />
+    <input type="hidden" name="redirect"    value="false" />
+    <input type="email"  name="email"
+           class="email-input"
+           placeholder="your@email.com"
+           required autocomplete="email" />
     <button type="submit" class="email-btn">Enter</button>
   </form>
+
   <p class="join-note reveal d3">No noise. Only what matters.</p>
 </section>
 
-<!-- FOOTER -->
+
+<!-- ── FOOTER ────────────────────────────────────────────────── -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <span class="trishul">
-        <svg width="16" height="28" viewBox="0 0 44 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 46L10 10" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 46V4"    stroke="#f59e0b" stroke-width="3"   stroke-linecap="round"/>
-          <path d="M22 46L34 10" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 46V76"  stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="16" y1="46" x2="28" y2="46" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-          <line x1="6"  y1="10" x2="14" y2="10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-          <line x1="18" y1="4"  x2="26" y2="4"  stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-          <line x1="30" y1="10" x2="38" y2="10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="footer-wordmark">RUDRA</span>
-    </div>
-    <ul class="footer-links">
-      <li><a href="#warriors">Warriors</a></li>
-      <li><a href="#universe">Universe</a></li>
-      <li><a href="mailto:therudrahq@gmail.com">Contact</a></li>
-      <li><a href="mailto:therudrahq@gmail.com?subject=Investor%20Inquiry">Investors</a></li>
-    </ul>
+  <div class="footer-brand">
+    <span class="trishul-mark">
+      <svg width="14" height="25" viewBox="0 0 44 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 3 C25 11,26 22,24 34 L20 34 C18 22,19 11,22 3 Z" fill="#d4a017" opacity="0.65"/>
+        <path d="M20 34 C16 28,9 22,5 15 L8 13 C12 19,18 26,22 34 Z" fill="#d4a017" opacity="0.55"/>
+        <path d="M24 34 C28 28,35 22,39 15 L36 13 C32 19,26 26,22 34 Z" fill="#d4a017" opacity="0.55"/>
+        <rect x="12" y="34" width="20" height="2.5" fill="#d4a017" rx="1" opacity="0.6"/>
+        <rect x="20.5" y="37" width="3" height="39" fill="#d4a017" rx="1.5" opacity="0.6"/>
+      </svg>
+    </span>
+    <span class="footer-word">RUDRA</span>
   </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Rudra. All rights reserved. Made in Bharat.</span>
-    <span class="footer-om">ॐ नमः शिवाय</span>
-  </div>
+
+  <ul class="footer-links">
+    <li><a href="#warriors">Warriors</a></li>
+    <li><a href="#universe">Universe</a></li>
+    <li><a href="#join">Join</a></li>
+    <li><a href="mailto:therudrahq@gmail.com">Contact</a></li>
+  </ul>
+
+  <p class="footer-copy">&copy; 2025 Rudra Robotics &middot; India</p>
 </footer>
 
+
 <script>
-  // Nav solidify on scroll
+  // Nav: add .solid class on scroll
   const nav = document.getElementById('nav');
-  addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40));
+  const onScroll = () => nav.classList.toggle('solid', window.scrollY > 60);
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Hero parallax
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      heroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+    }
+  }, { passive: true });
 
   // Scroll reveal
-  const io = new IntersectionObserver(
-    es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
-    { threshold: 0.1 }
-  );
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // Form
-  const form = document.getElementById('joinForm');
+  // Form: Web3Forms async submit
+  const form    = document.getElementById('joinForm');
   const success = document.getElementById('joinSuccess');
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const btn = form.querySelector('button');
-    btn.textContent = '...';
+    const btn  = form.querySelector('button');
+    const orig = btn.textContent;
+    btn.textContent = '···';
+    btn.disabled = true;
     try {
-      const r = await fetch(form.action, {
+      const res  = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: new FormData(form),
+        body:   new FormData(form),
         headers: { Accept: 'application/json' }
       });
-      if (r.ok) {
+      const data = await res.json();
+      if (data.success) {
         form.style.display = 'none';
         success.style.display = 'block';
       } else {
-        btn.textContent = 'Enter';
-        alert('Something went wrong. Try again.');
+        btn.textContent = orig;
+        btn.disabled = false;
       }
-    } catch(_) {
-      btn.textContent = 'Enter';
+    } catch (_) {
+      // Fallback: native submit
+      btn.disabled = false;
       form.submit();
     }
   });
