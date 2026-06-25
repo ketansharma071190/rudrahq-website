@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Arjuna League — Join the Waitlist</title>
+<meta name="description" content="Real Steel x Mahabharata. India's warrior robots are coming. Join the founding waitlist." />
+<meta property="og:title" content="The Arjuna League" />
+<meta property="og:description" content="Real Steel x Mahabharata. India's warrior robots are coming. Pick your fighter." />
+<meta property="og:image" content="assets/arjuna-cinematic.png" />
+<meta name="theme-color" content="#06070c" />
+<link rel="icon" href="favicon-64.png" />
+<style>
+  :root{--gold:#e8b768;--blue:#5aa6ff;--green:#7fd18a;--copper:#d98a4a;--ink:#06070c;--mut:#9aa3b2}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:#06070c;color:#fff;font-family:"Helvetica Neue",Arial,sans-serif;overflow-x:hidden}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* hero */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden}
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;filter:saturate(1.1) contrast(1.05)}
+  .hero .scrim{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(6,7,12,.25),rgba(6,7,12,.92) 80%)}
+  .hero .content{position:relative;z-index:2;padding:0 20px}
+  .kick{letter-spacing:.42em;text-transform:uppercase;font-size:13px;color:var(--gold);margin-bottom:22px}
+  h1{font-weight:800;letter-spacing:.04em;font-size:clamp(40px,9vw,104px);line-height:.98;text-shadow:0 6px 50px rgba(0,0,0,.8)}
+  h1 .l2{color:var(--gold)}
+  .tag{font-size:clamp(16px,2.4vw,24px);color:#e7ebf2;margin-top:22px;font-style:italic}
+  .serif.tag{font-family:Georgia,serif}
+  .cta{display:inline-block;margin-top:38px;background:var(--gold);color:#06070c;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:14px;padding:16px 38px;border-radius:3px;text-decoration:none;transition:.25s}
+  .cta:hover{box-shadow:0 0 46px rgba(232,183,104,.5);transform:translateY(-1px)}
+  .scrolldn{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--mut);font-size:24px;z-index:2;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+  /* fighters */
+  .sec{padding:96px 0}
+  .sec h2{text-align:center;font-weight:700;letter-spacing:.03em;font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+  .sec .sub{text-align:center;color:var(--mut);max-width:640px;margin:0 auto 54px;font-size:16px;line-height:1.7}
+  .fighters{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+  .card{background:#0c0e16;border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden}
+  .card img{width:100%;height:300px;object-fit:cover;display:block}
+  .card .body{padding:22px 24px}
+  .card .nm{font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:24px}
+  .card .ep{letter-spacing:.34em;text-transform:uppercase;font-size:12px;margin:8px 0 12px}
+  .card .ds{color:var(--mut);font-size:15px;line-height:1.7}
+  .arj .nm,.arj .ep{color:var(--blue)} .bhm .nm,.bhm .ep{color:var(--green)}
+
+  /* vision strip */
+  .vision{text-align:center;padding:90px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+  .vision p{font-size:clamp(20px,3.2vw,34px);font-weight:300;line-height:1.5;max-width:840px;margin:0 auto}
+  .vision .gold{color:var(--gold)} .vision .blue{color:var(--blue)}
+
+  /* signup */
+  .signup{padding:100px 0;text-align:center}
+  .signup h2{font-size:clamp(28px,4.4vw,46px);font-weight:800;margin-bottom:14px}
+  .signup p.lead{color:var(--mut);margin-bottom:30px;font-size:17px}
+  .picklabel{color:var(--mut);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px}
+  .picks{display:flex;gap:12px;max-width:520px;margin:0 auto 22px;justify-content:center;flex-wrap:wrap}
+  .pick{flex:1;min-width:180px;background:#0c0e16;border:1px solid rgba(255,255,255,.16);color:#cdd3dd;border-radius:6px;padding:14px 16px;cursor:pointer;transition:.18s;font-size:14px;letter-spacing:.06em}
+  .pick b{display:block;font-size:16px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+  .pick small{color:var(--mut);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+  .pick:hover{border-color:rgba(255,255,255,.4)}
+  .pick.sel.arj{border-color:var(--blue);box-shadow:0 0 28px rgba(90,166,255,.28)} .pick.sel.arj b{color:var(--blue)}
+  .pick.sel.bhm{border-color:var(--green);box-shadow:0 0 28px rgba(127,209,138,.28)} .pick.sel.bhm b{color:var(--green)}
+  form{display:flex;gap:10px;max-width:520px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  input[type=email]{flex:1;min-width:240px;background:#0c0e16;border:1px solid rgba(255,255,255,.16);color:#fff;padding:16px 18px;border-radius:3px;font-size:16px}
+  input[type=email]:focus{outline:none;border-color:var(--gold)}
+  button{background:var(--gold);color:#06070c;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:14px;padding:16px 30px;border:none;border-radius:3px;cursor:pointer;transition:.25s}
+  button:hover{box-shadow:0 0 40px rgba(232,183,104,.45)}
+  button:disabled{opacity:.55;cursor:default;box-shadow:none}
+  .ok{color:var(--green);margin-top:22px;font-size:18px;display:none}
+  .err{color:#ff8b8b;margin-top:16px;font-size:14px;display:none}
+  .count{color:var(--gold);margin-top:24px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;min-height:18px;opacity:.9}
+  .fineprint{color:#5a626f;font-size:12px;margin-top:16px}
+  footer{text-align:center;padding:40px 0;color:#4a515c;font-size:12px;letter-spacing:.06em}
+  footer img{width:54px;opacity:.8;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <img class="bg" src="assets/arjuna-cinematic.png" alt="" />
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="kick">Real Steel &nbsp;&times;&nbsp; Mahabharata</div>
+    <h1>THE ARJUNA<br><span class="l2">LEAGUE</span></h1>
+    <p class="tag serif">India's warrior robots are coming. Pick your fighter.</p>
+    <a href="#join" class="cta">Join the founding waitlist</a>
+  </div>
+  <div class="scrolldn">&#8595;</div>
+</section>
+
+<section class="sec wrap">
+  <h2>The first two warriors</h2>
+  <p class="sub">Piloted combat robots, each a warrior reborn in steel. You don't just watch the fight. You're in it.</p>
+  <div class="fighters">
+    <div class="card arj">
+      <img src="assets/arjuna-cinematic.png" alt="Arjuna" />
+      <div class="body">
+        <div class="nm">Arjuna</div>
+        <div class="ep">The Bowblade</div>
+        <div class="ds">Speed. Precision. The archer who never misses, rebuilt as a lightning-fast striker.</div>
+      </div>
+    </div>
+    <div class="card bhm">
+      <img src="assets/bhim-standing.png" alt="Bheema" />
+      <div class="body">
+        <div class="nm">Bheema</div>
+        <div class="ep">The Avalanche</div>
+        <div class="ds">Power. Mass. The mace-wielder whose every blow ends the round.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vision">
+  <div class="wrap">
+    <p>A piloted combat league <span class="gold">today.</span><br>India's humanoid company <span class="blue">tomorrow.</span></p>
+  </div>
+</section>
+
+<section class="signup wrap" id="join">
+  <h2>Be a Founding Forged.</h2>
+  <p class="lead">Join the waitlist for the first drop, early access, and a place in the League before anyone else.</p>
+
+  <div class="picklabel">Pick your fighter <span style="opacity:.6">(optional)</span></div>
+  <div class="picks" id="picks">
+    <div class="pick arj" data-pick="arjuna"><b>Arjuna</b><small>The Bowblade</small></div>
+    <div class="pick bhm" data-pick="bheema"><b>Bheema</b><small>The Avalanche</small></div>
+  </div>
+
+  <form id="wl" onsubmit="return joinWaitlist(event)">
+    <input type="email" id="email" placeholder="your@email.com" required autocomplete="email" />
+    <button type="submit" id="submitBtn">Claim my place</button>
+  </form>
+  <div class="ok" id="ok">You're on the list. We'll be in touch before the first bell. &#9876;</div>
+  <div class="err" id="err"></div>
+  <div class="count" id="count"></div>
+  <div class="fineprint">No spam. Just the League.</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="rudra-logo.png" alt="" onerror="this.style.display='none'" />
+    <div>The Arjuna League &middot; Made in India &middot; In the making, 2026</div>
+  </div>
+</footer>
+
+<script>
+// --- Supabase (public anon key; row-level security keeps the email list private) ---
+var SB_URL = "https://nyeppfevlxnceaklclzj.supabase.co";
+var SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55ZXBwZmV2bHhuY2Vha2xjbHpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNjA3NzEsImV4cCI6MjA5NzkzNjc3MX0.-B-34ahkcbHQj0mGQYcCUZo1Zdi3hhHEmFEz20LChKM";
+var SB_HEADERS = {"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json"};
+
+var pick = null;
+
+// fighter toggle
+document.querySelectorAll('#picks .pick').forEach(function(el){
+  el.addEventListener('click', function(){
+    var v = el.getAttribute('data-pick');
+    if(pick === v){ pick = null; el.classList.remove('sel'); return; }
+    document.querySelectorAll('#picks .pick').forEach(function(p){p.classList.remove('sel');});
+    el.classList.add('sel'); pick = v;
+  });
+});
+
+// live counter via the count-only RPC (emails themselves are never exposed)
+function refreshCount(){
+  fetch(SB_URL+"/rest/v1/rpc/waitlist_count",{method:"POST",headers:SB_HEADERS,body:"{}"})
+    .then(function(r){return r.json();})
+    .then(function(n){
+      var c = document.getElementById('count');
+      n = parseInt(n,10) || 0;
+      c.textContent = n > 0 ? (n.toLocaleString()+" warriors have already joined.") : "Be the first warrior to join.";
+    }).catch(function(){});
+}
+
+function joinWaitlist(e){
+  e.preventDefault();
+  var email = document.getElementById('email').value.trim();
+  var btn = document.getElementById('submitBtn');
+  var err = document.getElementById('err');
+  err.style.display='none';
+  if(!email) return false;
+  btn.disabled = true; btn.textContent = "Forging...";
+
+  fetch(SB_URL+"/rest/v1/waitlist_signups",{
+    method:"POST",
+    headers:Object.assign({},SB_HEADERS,{"Prefer":"return=minimal"}),
+    body:JSON.stringify({email:email, fighter_pick:pick})
+  }).then(function(r){
+    if(r.status === 201 || r.status === 409){ // 409 = already on the list -> still a win
+      document.getElementById('wl').style.display='none';
+      document.querySelector('.picklabel').style.display='none';
+      document.getElementById('picks').style.display='none';
+      document.getElementById('ok').style.display='block';
+      refreshCount();
+    } else {
+      throw new Error("status "+r.status);
+    }
+  }).catch(function(){
+    btn.disabled=false; btn.textContent="Claim my place";
+    err.textContent="Something went wrong. Please try again.";
+    err.style.display='block';
+  });
+  return false;
+}
+
+refreshCount();
+</script>
+</body>
+</html>
