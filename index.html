@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RUDRA — Warriors of Dharma</title>
-  <meta name="description" content="India's first humanoid warrior universe. 7,000 years of Bharatiya legacy. In steel." />
+  <title>VIRUK — The Arjuna League</title>
+  <meta name="description" content="Real Steel × the Mahabharata. India's legendary warriors, reborn in steel as human-piloted combat robots. The Arjuna League." />
   <meta name="theme-color" content="#080604" />
-  <meta property="og:title" content="RUDRA — Warriors of Dharma" />
-  <meta property="og:description" content="Arjuna and Bhim. The warriors of Kurukshetra fight again — in steel." />
+  <meta property="og:title" content="VIRUK — The Arjuna League" />
+  <meta property="og:description" content="Arjuna and Bhim. India's legendary warriors fight again, reborn in steel. You don't watch the fight, you pilot it." />
   <meta property="og:image" content="https://rudrahq.com/assets/arjuna-cinematic.png" />
   <meta property="og:url" content="https://rudrahq.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicons — inline SVG, crisp at any size -->
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v=3" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3" />
+  <!-- Favicons — VIRUK emblem -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4" />
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v=4" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -780,6 +781,62 @@
       .email-form { flex-direction: column; }
       .email-input { border-right: 1px solid var(--border); border-bottom: none; }
     }
+
+    /* ── CREATIVE POLISH PASS ───────────────── */
+    #brand-stamp { padding: 40px 0 28px; }
+    #brand-stamp img { mix-blend-mode: normal; filter: none; animation: none; }
+    .hero-cta-note { margin-top: 18px; font-size: 12px; letter-spacing: 0.06em; color: var(--muted); }
+
+    /* stronger hero scrim behind the headline */
+    #hero .hero-bg::after {
+      background:
+        linear-gradient(to bottom, rgba(8,6,4,0.34) 0%, rgba(8,6,4,0) 22%, rgba(8,6,4,0) 44%, rgba(8,6,4,0.86) 72%, rgba(8,6,4,1) 100%),
+        linear-gradient(to right, rgba(8,6,4,0.72) 0%, rgba(8,6,4,0.12) 52%, rgba(8,6,4,0) 100%);
+    }
+
+    /* cinematic staggered hero entrance (begins as the brand stamp settles) */
+    .hero-content > * { opacity: 0; animation: heroRise 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero-content > *:nth-child(1){ animation-delay: 1.30s }
+    .hero-content > *:nth-child(2){ animation-delay: 1.46s }
+    .hero-content > *:nth-child(3){ animation-delay: 1.66s }
+    .hero-content > *:nth-child(4){ animation-delay: 1.80s }
+    .hero-content > *:nth-child(5){ animation-delay: 1.94s }
+    .hero-content > *:nth-child(6){ animation-delay: 2.06s }
+    @keyframes heroRise { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform:none; } }
+    .hero-h1 .gold { animation: goldFlare 1.6s ease-out 1.7s both; }
+    @keyframes goldFlare { 0% { text-shadow: 0 0 28px rgba(224,168,24,.75); } 100% { text-shadow: 0 0 0 rgba(224,168,24,0); } }
+
+    /* power bars: thicker, glowing */
+    .srow-bg { height: 5px; border-radius: 3px; }
+    .warrior-card.arjuna .srow-fill { box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 9px rgba(58,106,207,0.55); }
+    .warrior-card.bhim   .srow-fill { box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 9px rgba(58,138,44,0.55); }
+
+    /* warrior card: lift + faction glow + photo zoom on hover */
+    .warrior-card { transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+    .warrior-card.arjuna:hover { transform: translateY(-4px); box-shadow: 0 16px 44px -14px rgba(58,106,207,0.4); }
+    .warrior-card.bhim:hover   { transform: translateY(-4px); box-shadow: 0 16px 44px -14px rgba(58,138,44,0.4); }
+    .warrior-photo { transition: transform 0.6s ease, opacity 0.4s ease; }
+    .warrior-card:hover .warrior-photo { transform: scale(1.04); }
+
+    /* draw the gold line under section titles on reveal */
+    .gold-line { width: 0; transition: width 0.6s ease 0.2s; }
+    .reveal.visible .gold-line { width: 56px; }
+
+    /* mid-page CTA band + social proof */
+    .midcta { border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg2); padding:44px 0; }
+    .midcta-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; flex-wrap:wrap; }
+    .midcta-copy { font-family:'Cinzel',serif; font-size:clamp(20px,2.4vw,30px); font-weight:700; color:var(--white); }
+    .midcta-copy span { color:var(--gold); }
+    .join-proof { font-family:'Cinzel',serif; color:var(--gold); font-size:15px; letter-spacing:0.06em; margin-bottom:32px; }
+    .share-line { margin-top:18px; font-size:14px; color:var(--muted); }
+    .share-line a { color:var(--gold); border-bottom:1px solid var(--gold-dim); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+      .reveal { opacity:1 !important; transform:none !important; }
+      .hero-content > * { opacity:1 !important; transform:none !important; }
+      .gold-line { width:56px !important; }
+    }
   </style>
 </head>
 <body>
@@ -789,8 +846,8 @@
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="rudra-logo.png?v=3" alt="Rudra trishul emblem" />
-        <span class="wm">RUD<em>RA</em></span>
+        <img src="viruk-mark.svg" alt="" style="width:30px;height:30px;mix-blend-mode:normal;filter:none" />
+        <span class="wm">VIR<em>UK</em></span>
       </a>
       <div class="nav-links">
         <a href="#mission">Mission</a>
@@ -805,7 +862,10 @@
 
 <!-- ── BRAND STAMP ── -->
 <section id="brand-stamp">
-  <img src="rudra-logo.png?v=3" alt="Rudra trishul emblem" />
+  <div style="display:flex;flex-direction:column;align-items:center;gap:20px;animation:emblemIn 1.4s cubic-bezier(0.16,1,0.3,1) both;">
+    <img src="viruk-mark.svg" alt="VIRUK emblem" style="width:clamp(74px,10vw,118px);height:auto" />
+    <div style="font-family:'Cinzel',serif;font-size:clamp(42px,7vw,82px);font-weight:900;letter-spacing:0.18em;color:var(--gold);">VIRUK</div>
+  </div>
 </section>
 
 <!-- ── HERO ── -->
@@ -814,16 +874,16 @@
 
   <div class="container">
     <div class="hero-content">
-      <div class="hero-eyebrow">Combat Robotics · Sanatana · India</div>
+      <div class="hero-eyebrow">The Arjuna League&nbsp;&nbsp;·&nbsp;&nbsp;<span style="color:var(--gold-lt);font-weight:700;">Real Steel × Mahabharata</span></div>
 
       <h1 class="hero-h1">
-        THE GODS<br/>
+        THE WARRIORS<br/>
         <span class="gold">HAVE</span><br/>
         RETURNED.
       </h1>
 
-      <p class="hero-sub">
-        India's first humanoid warrior universe.
+      <p class="hero-sub" style="font-size:clamp(17px,2vw,24px);max-width:560px;">
+        India's legendary warriors, reborn in steel as combat robots <strong style="color:var(--white);font-weight:700;">you pilot.</strong>
       </p>
 
       <div class="hero-tagline">
@@ -831,7 +891,7 @@
         <span class="x">·</span>
         <span>Story</span>
         <span class="x">·</span>
-        <span>Dharma</span>
+        <span>Combat</span>
       </div>
 
       <div class="hero-actions">
@@ -843,6 +903,8 @@
           </svg>
         </a>
       </div>
+
+      <div class="hero-cta-note">Founding pilots get first access to the first fight. <span style="color:var(--gold);">No spam, just the signal.</span></div>
     </div>
   </div>
 
@@ -857,26 +919,24 @@
 <div class="strip">
   <div class="strip-track">
     <div class="strip-item"><span class="strip-dot"></span><span>Combat Robotics</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Sanatana</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Arjuna League</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Kurukshetra Warriors</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>The Arjuna League</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Real Steel × Mahabharata</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Human-Piloted Combat</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Kurukshetra Cup</span></div>
     <div class="strip-item"><span class="strip-dot"></span><span>India · 2026</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Mahabharata</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Ramayana</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>7000 Years of Bharatiya Legacy</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Defence &amp; Education</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Rudra</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Reborn in Steel</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Pilot Your Fighter</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>VIRUK</span></div>
     <!-- duplicate for seamless loop -->
     <div class="strip-item"><span class="strip-dot"></span><span>Combat Robotics</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Sanatana</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Arjuna League</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Kurukshetra Warriors</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>The Arjuna League</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Real Steel × Mahabharata</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Human-Piloted Combat</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Kurukshetra Cup</span></div>
     <div class="strip-item"><span class="strip-dot"></span><span>India · 2026</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Mahabharata</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Ramayana</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>7000 Years of Bharatiya Legacy</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Defence &amp; Education</span></div>
-    <div class="strip-item"><span class="strip-dot"></span><span>Rudra</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Reborn in Steel</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>Pilot Your Fighter</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span>VIRUK</span></div>
   </div>
 </div>
 
@@ -890,7 +950,7 @@
         <h2 class="section-title">A living universe<br/>of combat warriors.</h2>
         <div class="gold-line"></div>
         <p class="mission-body">
-          Rudra <strong>started with the stories.</strong> The deepest, most battle-tested
+          VIRUK <strong>started with the stories.</strong> The deepest, most battle-tested
           stories on earth — and built the technology to bring those warriors to life
           in physical form.
         </p>
@@ -901,12 +961,12 @@
         </p>
         <div class="stat-grid">
           <div class="stat-box">
-            <div class="stat-num">7,000</div>
-            <div class="stat-lbl">Years of Bharatiya Legacy</div>
+            <div class="stat-num">100+</div>
+            <div class="stat-lbl">Legendary Warriors</div>
           </div>
           <div class="stat-box">
-            <div class="stat-num">3</div>
-            <div class="stat-lbl">Universe Series</div>
+            <div class="stat-num">2</div>
+            <div class="stat-lbl">Live Fighters</div>
           </div>
           <div class="stat-box">
             <div class="stat-num">4</div>
@@ -937,34 +997,34 @@
 <section id="heritage">
   <div class="container">
     <div class="heritage-inner reveal">
-      <div class="heritage-year">7,000</div>
-      <div class="heritage-year-sub">Years of Bharatiya Legacy</div>
+      <div class="heritage-year">100+</div>
+      <div class="heritage-year-sub">Legendary Fighters, One Universe</div>
       <p class="heritage-lead">
-        The oldest living civilisational memory on earth —
-        and it has never stopped telling its stories.
+        The greatest warriors ever imagined, drawn from the world's
+        oldest stories, reborn in steel.
       </p>
       <p class="heritage-body">
-        The Mahabharata contains every moral conflict a human being can face.
-        The Ramayana defines what duty, love, and sacrifice look like when tested to their limits.
-        These are not old texts. They are the architecture of a culture that shaped a billion people
-        and never needed to borrow its identity from anywhere else.
-        Rudra builds in that inheritance.
+        The Mahabharata and the Ramayana gave us a hundred fighters, each with a distinct
+        weapon, a distinct style, a distinct legend. We are bringing them into the arena as
+        human-piloted combat robots — original designs, built with deep reverence
+        for the warriors who inspired them. A universe a billion people already love,
+        reborn for the age of steel.
       </p>
       <div class="heritage-pillars">
         <div class="pillar">
           <div class="pillar-icon">I</div>
           <div class="pillar-title">Mahabharata</div>
-          <div class="pillar-body">The great war of Kurukshetra. Warriors of impossible power, impossible dharma. Every fighter a universe. Every battle a philosophy.</div>
+          <div class="pillar-body">The great war of Kurukshetra. Warriors of impossible skill and impossible will. Every fighter a legend, every duel a story.</div>
         </div>
         <div class="pillar">
           <div class="pillar-icon">II</div>
           <div class="pillar-title">Ramayana</div>
-          <div class="pillar-body">Ravana's Lanka against Rama's dharma. Princes, generals, giants — each carrying a code of honour that the world has not seen matched since.</div>
+          <div class="pillar-body">Princes, generals and giants, each carrying a code of honour the world has not seen matched since. The next chapter of the roster.</div>
         </div>
         <div class="pillar">
           <div class="pillar-icon">III</div>
-          <div class="pillar-title">Devata Series</div>
-          <div class="pillar-body">Beyond the wars — the forces of creation itself. Indra, Agni, Vayu, Yama. The universe as fighters. The cosmos as the arena.</div>
+          <div class="pillar-title">The Arena</div>
+          <div class="pillar-body">You don't watch the fight, you pilot it. Real Steel meets the Mahabharata — human-piloted combat, real rivalries, real stakes.</div>
         </div>
       </div>
     </div>
@@ -989,7 +1049,7 @@
         <img src="assets/arjuna-standing.png" alt="Arjuna" class="warrior-photo" loading="lazy" />
         <div class="warrior-inner">
           <div class="warrior-num">01</div>
-          <div class="warrior-faction">Pandava · Warrior of Dharma</div>
+          <div class="warrior-faction">Pandava · The Unerring Archer</div>
           <div class="warrior-name">ARJUNA</div>
           <span class="warrior-deva">अर्जुन</span>
           <div class="warrior-role">
@@ -997,13 +1057,12 @@
             Speed Fighter
           </div>
           <p class="warrior-lore">
-            Born to Kunti by the blessing of Indra, Arjuna was given something rarer than strength —
+            The greatest archer who ever lived, given something rarer than strength —
             absolute clarity of eye and purpose. His arrow never sought what it could not find.
           </p>
           <p class="warrior-lore">
-            At Kurukshetra, he hesitated. Then Krishna spoke, and hesitation became history.
-            He became the instrument through which dharma restored itself —
-            with cold precision, not rage.
+            At Kurukshetra he faltered, then steadied, and became the fighter through whom
+            the war was decided — with cold precision, not rage. Reborn now in steel.
           </p>
           <div class="warrior-weapons">
             <div class="warrior-weapons-label">Weapons</div>
@@ -1049,14 +1108,14 @@
             Power Destroyer
           </div>
           <p class="warrior-lore">
-            Son of Vayu — the wind god who breathes life into all things. Bhim carried that
-            wind in his arms: deceptively fast for his size, catastrophic when it landed.
-            Vyasa measured his strength in ten thousand elephants and called it approximate.
+            The strongest man of his age — deceptively fast for his size, catastrophic when
+            it landed. The old chronicles measured his strength in ten thousand elephants
+            and called it approximate.
           </p>
           <p class="warrior-lore">
-            He killed the Kauravas one by one across eighteen days. The war ended when
-            Duryodhana's thighs broke under the Gada. Bhim walked off Kurukshetra
-            having done what he came to do.
+            He fought the Kauravas one by one across eighteen days, and the war ended
+            under the weight of his mace. Bhim walked off Kurukshetra having done what
+            he came to do. Reborn now in steel.
           </p>
           <div class="warrior-weapons">
             <div class="warrior-weapons-label">Weapons</div>
@@ -1082,7 +1141,7 @@
           </div>
           <div class="warrior-sig">
             <div class="sig-label">Ultimate Move</div>
-            <div class="sig-name">Vayu Rage</div>
+            <div class="sig-name">Tempest Charge</div>
             <div class="sig-desc">Full forward charge, both arms sweeping — built to end fights, not extend them</div>
           </div>
         </div>
@@ -1091,6 +1150,17 @@
     </div>
   </div>
 </section>
+
+
+<!-- ── MID CTA ── -->
+<div class="midcta">
+  <div class="container">
+    <div class="midcta-inner">
+      <div class="midcta-copy">Two fighters are ready. <span>The arena opens in 2026.</span></div>
+      <a href="#join" class="btn-primary">Claim Your Pilot Seat</a>
+    </div>
+  </div>
+</div>
 
 
 <!-- ── COMING WARRIORS ── -->
@@ -1110,7 +1180,7 @@
         <div class="coming-card-name">KARNA</div>
         <span class="coming-card-deva">कर्ण</span>
         <div class="coming-badge">Coming</div>
-        <p class="coming-card-desc">Born of Surya and Kunti. A warrior who could match Arjuna move for move — and knew it. The tragedy of Kurukshetra wore his face.</p>
+        <p class="coming-card-desc">Kunti's firstborn, abandoned and raised a charioteer's son. A warrior who could match Arjuna move for move — and knew it. The tragedy of Kurukshetra wore his face.</p>
       </div>
 
       <div class="coming-card reveal">
@@ -1171,7 +1241,7 @@
         <div class="coming-card-name">JAMWANT</div>
         <span class="coming-card-deva">जाम्बवन्त</span>
         <div class="coming-badge">Coming</div>
-        <p class="coming-card-desc">The ancient bear king who fought across two Yugas and wrestled Krishna himself to a standstill. Some warriors are not measured by battles won — they are measured by how long they endure.</p>
+        <p class="coming-card-desc">The ancient bear king who fought across two ages and outlasted every champion who ever faced him. Some warriors are not measured by battles won — they are measured by how long they endure.</p>
       </div>
 
     </div>
@@ -1186,11 +1256,11 @@
 
       <div class="reveal">
         <div class="tag">The Universe</div>
-        <h2 class="section-title">One dharma.<br/>Infinite fighters.</h2>
+        <h2 class="section-title">One league.<br/>Infinite fighters.</h2>
         <div class="gold-line"></div>
         <p class="mission-body" style="margin-bottom:0">
-          A <strong>living IP universe</strong> backed by 7,000 years of Bharatiya legacy.
-          Every warrior has a dharma. Every dharma has a fight.
+          A <strong>living IP universe</strong> of 100+ legendary fighters.
+          Every warrior has a story. Every story has a fight.
         </p>
 
         <div class="series-block">
@@ -1221,14 +1291,6 @@
             <span class="chip">Meghnad</span>
           </div>
 
-          <div class="series-hd">Series 3 — Devata (Future)</div>
-          <div class="chips">
-            <span class="chip">Indra</span>
-            <span class="chip">Vayu</span>
-            <span class="chip">Agni</span>
-            <span class="chip">Yama</span>
-            <span class="chip">Surya</span>
-          </div>
         </div>
       </div>
 
@@ -1237,8 +1299,8 @@
           <div class="phase active">
             <div class="phase-num">I</div>
             <div>
-              <div class="phase-title">Combat Universe</div>
-              <div class="phase-desc">Fighting robots as IP entertainment. A product that carries the full weight of 7,000 years of Bharatiya legacy.</div>
+              <div class="phase-title">The Combat League</div>
+              <div class="phase-desc">Human-piloted fighting robots as IP entertainment. The brand, talent and demand engine that funds the climb.</div>
             </div>
           </div>
           <div class="phase">
@@ -1283,12 +1345,13 @@
         Be among the first to know when Arjuna and Bhim enter the arena.<br/>
         First fight. First drop. First league.
       </p>
+      <div class="join-proof">▲ Pilots are signing up daily across India.</div>
       <form class="email-form" id="joinForm"
             action="https://api.web3forms.com/submit"
             method="POST">
         <input type="hidden" name="access_key"  value="cc303944-7bb9-472c-9a1a-a80dac4d1c71" />
-        <input type="hidden" name="subject"     value="Rudra — New League Member" />
-        <input type="hidden" name="from_name"   value="Rudra HQ" />
+        <input type="hidden" name="subject"     value="VIRUK — New League Member" />
+        <input type="hidden" name="from_name"   value="VIRUK HQ" />
         <input type="hidden" name="redirect"    value="false" />
         <input class="email-input" type="email" name="email"
                placeholder="Enter your email address" required autocomplete="email" />
@@ -1296,6 +1359,7 @@
       </form>
       <div class="form-success" id="formSuccess">
         You're in. The warriors will find you.
+        <div class="share-line"><a href="https://wa.me/?text=I%20just%20joined%20The%20Arjuna%20League%20%E2%80%94%20India%27s%20legendary%20warriors%20reborn%20as%20combat%20robots%20you%20pilot.%20Join%3A%20https%3A%2F%2Frudrahq.com" target="_blank" rel="noopener">Tell a friend who pilots →</a></div>
       </div>
       <p class="email-note">No spam. Ever. Just the signal when it matters.</p>
     </div>
@@ -1308,8 +1372,8 @@
   <div class="container">
     <div class="footer-inner">
       <div>
-        <div class="footer-logo">RUD<span>RA</span></div>
-        <div class="footer-tagline">One dharma. Infinite fighters.</div>
+        <div class="footer-logo">VIR<span>UK</span></div>
+        <div class="footer-tagline">Reborn in steel. The Arjuna League.</div>
       </div>
       <div class="footer-links">
         <a href="#mission">Mission</a>
@@ -1319,7 +1383,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 Rudra. All rights reserved. rudrahq.com</div>
+      <div class="footer-copy">© 2026 VIRUK · The Arjuna League · Honouring India's greatest warriors, reborn in steel. rudrahq.com</div>
       <div class="footer-social">
         <a href="https://instagram.com/rudrahq" target="_blank" rel="noopener">Instagram</a>
         <a href="mailto:therudrahq@gmail.com">Email</a>
@@ -1336,13 +1400,31 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
+  // Reduced-motion preference
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Hero parallax
   const heroBg = document.getElementById('heroBg');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight) {
-      heroBg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+  if (!reduceMotion) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight) {
+        heroBg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+      }
+    }, { passive: true });
+  }
+
+  // Count-up helper for stat numbers
+  function countUp(el, to) {
+    if (reduceMotion) { el.textContent = to; return; }
+    const dur = 1100, start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * to);
+      if (p < 1) requestAnimationFrame(step);
     }
-  }, { passive: true });
+    requestAnimationFrame(step);
+  }
 
   // Scroll reveal + stat bars animate on entry
   const reveals = document.querySelectorAll('.reveal');
@@ -1351,8 +1433,12 @@
       if (e.isIntersecting) {
         setTimeout(() => {
           e.target.classList.add('visible');
-          e.target.querySelectorAll('.srow-fill').forEach(bar => {
-            bar.style.width = bar.dataset.w + '%';
+          e.target.querySelectorAll('.srow').forEach(row => {
+            const fill = row.querySelector('.srow-fill');
+            const num  = row.querySelector('.srow-label span:last-child');
+            const val  = parseInt(fill.dataset.w, 10);
+            fill.style.width = val + '%';
+            if (num) countUp(num, val);
           });
         }, i * 80);
         revealObs.unobserve(e.target);

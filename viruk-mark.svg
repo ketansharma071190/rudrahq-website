@@ -1,0 +1,16 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VIRUK">
+  <defs>
+    <linearGradient id="vgold2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4cf57"/>
+      <stop offset="0.55" stop-color="#e0a818"/>
+      <stop offset="1" stop-color="#b8830a"/>
+    </linearGradient>
+  </defs>
+  <path d="M60 6 L106 33 L106 87 L60 114 L14 87 L14 33 Z" fill="none" stroke="url(#vgold2)" stroke-width="4" stroke-linejoin="round"/>
+  <g fill="url(#vgold2)">
+    <path d="M60 24 L83 57 L67 57 L67 60 L53 60 L53 57 L37 57 Z"/>
+    <rect x="53" y="60" width="14" height="26"/>
+    <path d="M53 72 L37 90 L53 83 Z"/>
+    <path d="M67 72 L83 90 L67 83 Z"/>
+  </g>
+</svg>
